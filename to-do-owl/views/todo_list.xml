@@ -36,7 +36,7 @@
             <field name="view_mode">tree,form</field>
         </record>
     </data>
-    <menuitem id="menu_owl_todo" name="to-do owl" sequence="10">
+    <menuitem id="menu_owl_todo" name="Tareas Owl" sequence="10">
         <menuitem id="menu_owl_todo_list" name="Lista de Tareas" sequence="10" action="action_owl_todo_list"/> 
     </menuitem>
 </odoo>
