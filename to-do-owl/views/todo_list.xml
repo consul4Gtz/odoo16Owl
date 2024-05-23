@@ -53,6 +53,7 @@
 form view
 action
 menu
+la ultima seciion es la creacion de la seciion owl tomando como base nun modulo ya existente 
 
 
 <field name="params" eval="&quot; { 'default_active_id': 'mail.box_inbox'}&quot;"/>-->
