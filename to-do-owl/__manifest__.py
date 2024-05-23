@@ -16,8 +16,8 @@
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
-    'category': 'owl',
-    'version': '0.1',
+    'category': 'OWL',
+    'version': '0.2',
 
     # any module necessary for this one to work correctly
     'depends': ['base'],
@@ -28,8 +28,15 @@
         #'views/views.xml',
         #'views/templates.xml',
     ],
+    'installable': True,
+    'application': True,
     # only loaded in demonstration mode
     'demo': [
         #'demo/demo.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+        ],
+    },
+    
 }
