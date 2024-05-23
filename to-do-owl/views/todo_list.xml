@@ -7,7 +7,6 @@
             <field name="arch" type="xml">
                 <tree string="">
                     <field name="name"/>
-                    <field name="description"/>
                     <field name="color" widget="color"/>
                     <field name="completed"/>      
                 </tree>
@@ -21,7 +20,6 @@
                     <sheet>
                         <group>
                             <field name="name"/>
-                            <field name="Description" />
                             <field name="color" widget="color"/>
                             <field name="completed"/>   
                         </group>
@@ -31,12 +29,12 @@
         </record>
 
         <record id="action_owl_todo_list" model="ir.actions.act_window">
-            <field name="name">Lista de Tareas</field>
+            <field name="name">To-Do List</field>
             <field name="res_model">owl.todo.list</field>
             <field name="view_mode">tree,form</field>
         </record>
     </data>
-    <menuitem id="menu_owl_todo" name="Tareas-app Owl" sequence="10">
+    <menuitem id="menu_owl_todo" name="to-do owl" sequence="10">
         <menuitem id="menu_owl_todo_list" name="Lista de Tareas" sequence="10" action="action_owl_todo_list"/> 
     </menuitem>
 </odoo>

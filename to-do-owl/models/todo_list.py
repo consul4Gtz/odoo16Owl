@@ -7,8 +7,8 @@ class OwlTtodo(models.Model):
     
     #definiendo los campos
     name = fields.Char(string="Tarea", required=True)
-    description = fields.Text(String="Descripción") 
-    completed = fields.Boolean()
+    description = fields.Text() 
+    completed = fields.Boolean(string="Completado")
     color = fields.Char()
    # description = fields.Text()
 
