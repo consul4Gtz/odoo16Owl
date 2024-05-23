@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space= "preserve">
+    <t name ="owl.todolist" owl="1">
+        <div>
+            <h2>Lista de Tareas</h2>
+                <p t-esc="state.value" ></p>
+        </div>
+    </t>
+</templates>

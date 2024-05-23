@@ -35,13 +35,24 @@
             <field name="res_model">owl.todo.list</field>
             <field name="view_mode">tree,form</field>
         </record>
+        <!-- accion para la parte de owl-->
+        <record id="action_owl_todo_list_js" model="ir.actions.client">
+            <field name="name">Lista de Tareas Owl</field>
+            <field name="tag"=owl.action_todo_list_js></field>
+            
+        </record>
     </data>
     <menuitem id="menu_owl_todo" name="Tareas Owl" sequence="10">
         <menuitem id="menu_owl_todo_list" name="Lista de Tareas" sequence="10" action="action_owl_todo_list"/> 
+        <!-- menuitem para la parte de owl-->
+        <menuitem id="menu_owl_todo_list_js" name="Lista de Tareas con owl" sequence="10" action="action_owl_todo_list"/> 
     </menuitem>
 </odoo>
 <!-- la vista estara compuesta por la estructura
 <Tree view
 form view
 action
-menu-->
+menu
+
+
+<field name="params" eval="&quot; { 'default_active_id': 'mail.box_inbox'}&quot;"/>-->
