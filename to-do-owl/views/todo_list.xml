@@ -31,7 +31,7 @@
         </record>
 
         <record id="action_owl_todo_list" model="ir.actions.act_window">
-            <field name="name">To-Do List</field>
+            <field name="name">Lista de Tareas</field>
             <field name="res_model">owl.todo.list</field>
             <field name="view_mode">tree,form</field>
         </record>
