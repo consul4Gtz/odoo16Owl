@@ -36,9 +36,9 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'to-do-owl/static/src/components/*/*.js',
-            'to-do-owl/static/src/components/*/*.xml',
-            'to-do-owl/static/src/components/*/*.scss',
+            'web/static/src/components/*/*.js',
+            'web/static/src/components/*/*.xml',
+            'web/static/src/components/*/*.scss',
         ],
     },
     
