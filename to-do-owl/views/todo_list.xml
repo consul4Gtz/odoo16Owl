@@ -38,6 +38,7 @@
         <!-- accion para la parte de owl-->
         <record id="action_owl_todo_list_js" model="ir.actions.client">
             <field name="name">Lista de tareas OWL</field>
+            <field name="tag">owl_action_todo_list_js</field>
         </record>
 
     </data>
