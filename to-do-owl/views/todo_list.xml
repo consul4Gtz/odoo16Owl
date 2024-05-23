@@ -38,7 +38,7 @@
         <!-- accion para la parte de owl-->
         <record id="action_owl_todo_list_js" model="ir.actions.client">
             <field name="name">Lista de Tareas Owl</field>
-            <field name="tag">owl.action_todo_list_js</field>
+            <field name="tag">to-do-owl.action_todo_list_js</field>
         </record>
     </data>
     <menuitem id="menu_owl_todo" name="Tareas Owl" sequence="10">
