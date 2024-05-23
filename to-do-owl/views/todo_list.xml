@@ -44,7 +44,7 @@
     <menuitem id="menu_owl_todo" name="Tareas Owl" sequence="10">
         <menuitem id="menu_owl_todo_list" name="Lista de Tareas" sequence="10" action="action_owl_todo_list"/> 
         <!-- menuitem para la parte de owl-->
-        <menuitem id="menu_owl_todo_list_js" name="Lista de Tareas con owl" sequence="10" action="action_owl_todo_list"/> 
+        <menuitem id="menu_owl_todo_list_js" name="Lista de Tareas con owl" sequence="10" action="action_owl_todo_list_js"/> 
     </menuitem>
 </odoo>
 <!-- la vista estara compuesta por la estructura
