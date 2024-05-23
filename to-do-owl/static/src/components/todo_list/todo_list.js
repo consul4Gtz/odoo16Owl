@@ -16,7 +16,7 @@ export  class owltodolist extends Component {
 //pero para este caso crearemos una nmueva plantilla en la carpeta de static/src/xml, que copiaremos de discusscontrainier
 owltodolist.template = 'owl.todolist';
 
-registry.category('actions').add('owl_action_todo_list_js', owltodolist);
+registry.category('actions').add('owl.action_todo_list_js', owltodolist);
 
 
 

@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates xml:space= "preserve">
     <t name ="owl.todolist" owl="1">
-        <div>
+    <div class="todolistcontainer">
+        <div class="row ">
+
+            <div class="col-lg-6">
+             <button class="btn-btn-prymary">Nuevo</button>
+            </div>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" placeholder="Buscar.." />
+                <button class="btn-btn-prymary">Buscar</button>
+            </div>
             <h2>Lista de Tareas</h2>
                 <p t-esc="state.value" ></p>
         </div>
+    </div>
     </t>
 </templates>
