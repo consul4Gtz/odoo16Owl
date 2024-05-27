@@ -23,3 +23,6 @@ registry.category('actions').add('owl.action_todo_list_js', owltodolist);
 //el nombre de la plantila la agragremos en t t-name del archivo xml
 
 //debemos agregar el archivo en la vista principal xml todo_list.xml
+
+//prueba de comentario desde gtz
+
