@@ -48,6 +48,7 @@
     ],
     'assets': {
         'web.assets_backend': [
+             'l10n_hn_edi/static/src/js/components/widget.js'
             'l10n_hn_edi/static/src/components/**/*',
         ],
     },
