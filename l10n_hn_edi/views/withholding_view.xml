@@ -76,6 +76,7 @@
                             <group col="12" class="oe_invoice_lines_tab">
                                 <group colspan="8">
                                     <field name="wtax_widget" colspan="2" nolabel="1"  widget="whtax"/>
+                                    <field name="my_widget" widget="my_owl_widget"/>
                                     <field name="narration" placeholder="Terms and Conditions" colspan="2" nolabel="1"/>
                                 </group>
                                 <group colspan="4">

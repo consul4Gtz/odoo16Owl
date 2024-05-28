@@ -65,6 +65,8 @@ class AccountWithholding(models.Model):
     move_ids = fields.Many2many('account.move', compute="_compute_moves", copy=False, store=True)
     #wtax_widget = fields.Text(compute='_compute_wtax_widget_info')
     wtax_widget = fields.Binary(compute='_compute_wtax_widget_info')
+    my_widget = fields.Text(string="Campo Widget")
+    
     # Sequence Data
     l10n_hn_edi_cai_id = fields.Many2one('l10n_hn_edi.cai', 'CAI', copy=False, tracking=True, ondelete='restrict',
                                          help='CAI used when the invoice was posted.')
