@@ -48,10 +48,11 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'l10n_hn_edi/static/src/js/components/widget.js'
             'l10n_hn_edi/static/src/components/**/*',
         ],
     },
     'installable': True,
     'auto_install': False,
 }
+
+#'l10n_hn_edi/static/src/js/components/widget.js'
