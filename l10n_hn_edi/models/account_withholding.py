@@ -64,7 +64,7 @@ class AccountWithholding(models.Model):
     move_count = fields.Integer(compute="_compute_moves", copy=False, default=0, store=True)
     move_ids = fields.Many2many('account.move', compute="_compute_moves", copy=False, store=True)
     #wtax_widget = fields.Text(compute='_compute_wtax_widget_info')
-    wtax_widget = fields.Text(compute='_compute_wtax_widget_info')
+    wtax_widget = fields.Binary(compute='_compute_wtax_widget_info')
     my_widget = fields.Text(string="Campo Widget")
     
     # Sequence Data
