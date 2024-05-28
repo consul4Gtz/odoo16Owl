@@ -85,8 +85,9 @@
                                     </group>
                                 </group>
                             </group>
-
-                            <field name="my_widget" widget="my_owl_widget"/>
+                            
+                            <field name="wtax_widget" colspan="2" nolabel="1"  widget="whtax"/>
+                           
                         </page>
                         <page id="account_moves" string="Account Moves">
                             <field name="move_ids"/>
