@@ -19,7 +19,9 @@ export class AccountWhtaxField extends Component {
         this.action = useService("action");
 
         this.formatData(this.props);
-        onWillUpdateProps((nextProps) => this.formatData(nextProps));
+        onWillUpdateProps((nextProps) => { 
+            this.formatData(nextProps)
+            console.log("Cambio de propiedades en el componente 16")});
     }
 
     formatData(props) {
