@@ -17,7 +17,7 @@
         'point_of_sale.assets': [
             'q_pos_ticket/static/src/js/models.js',
             'q_pos_ticket/static/src/scss/style.scss',
-            'q_pos_ticket/static/src/js/clear_ticket.js',
+            #'q_pos_ticket/static/src/js/clear_ticket.js',
         ],
         'web.assets_qweb': [
             'q_pos_ticket/static/src/xml/**/*',
