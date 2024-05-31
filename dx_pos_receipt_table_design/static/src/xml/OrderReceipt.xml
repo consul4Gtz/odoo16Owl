@@ -65,7 +65,7 @@
 <!--                Lines-->
                 <table style="border: 1px solid;width:100%;text-align:center;" class="orderlines">
                     <tr style="border: 1px solid;">
-                        <td style="border: 1px solid;">ISV</td>
+                        <th style="border: 1px solid;">ISV</th>
                         <td style="border: 1px solid;"> Description </td>
                         <td></td>
                         <td></td>
@@ -73,7 +73,7 @@
                     <tr style="border: 1px solid;">
                         <td style="border: 1px solid;"></td>
                         <td style="border: 1px solid;"> Price </td>
-                        <td style="border: 1px solid;">Qty Unidad </td>
+                        <td style="border: 1px solid;">Qty Und </td>
                         <td style="border: 1px solid;">Total</td>
                     </tr>
                     <t t-foreach="receipt.orderlines" t-as="line" t-key="line.id">
@@ -90,7 +90,7 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td style="border: 1px solid;"> % </td>
+                            <td style="border: 1px solid;"> </td>
                             <td style="border: 1px solid;">  <t t-esc="env.pos.format_currency_no_symbol(line.price_display_one)"/></td>
                             <td style="border: 1px solid;"><t t-esc="line.quantity" /> </td>
                             <td style="border: 1px solid;"><t t-esc="env.pos.format_currency_no_symbol(line.price_display)" /></td>
@@ -118,6 +118,8 @@
 
                     <t t-foreach="receipt.paymentlines" t-as="line" t-key="line.cid">
                         <tr style="border: 1px solid;">
+                            <td></td>
+                            <td></td>
                             <td style="border: 1px solid;"><t t-esc="line.name" /></td>
                             <td style="border: 1px solid;"><t t-esc="env.pos.format_currency_no_symbol(line.amount)" class="pos-receipt-right-align"/></td>
                         </tr>
@@ -195,14 +197,16 @@
                         <td style="border: 1px solid;"> 1212</td>
                     </tr>
                     <tr style="border: 1px solid;">
+                        <td></td>
+                        <td></td>
                         <td style="border: 1px solid;">To Pay</td>
                         <td style="border: 1px solid;"><t t-esc='env.pos.format_currency(receipt.total_rounded)'/></td>
                     </tr>
                     <tr style="border: 1px solid;" class="receipt-change">
-                        <td style="border: 1px solid;"> CHANGE <t t-esc='env.pos.format_currency(receipt.change)'/></td>
+                         CHANGE <t t-esc='env.pos.format_currency(receipt.change)'/>
                     </tr>
                     <tr></tr>
-                    <tr><td>Valor en letras : <t t-esc="env.pos.format_currency(receipt.total_with_tax)"/> </td></tr>
+                    <tr>Valor en letras : <t t-esc="env.pos.format_currency(receipt.total_with_tax)"/> </tr>
                 </table>
                 <br/>
 
