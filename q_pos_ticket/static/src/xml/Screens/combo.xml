@@ -1,0 +1,14 @@
+<t t-name="OrderLinesReceipt" t-inherit="point_of_sale.OrderLinesReceipt" t-inherit-mode="extension" owl="1">
+    <xpath expr="//t[@t-foreach='receipt.orderlines']" position="inside">
+                   <t t-if="line.combo_items">
+                    <t t-foreach="line.combo_items" t-as="combo_item" t-key="combo_item.id">
+                        <div class="receipt-combo">
+                             - <t t-esc="combo_item.name"/>
+                            With qty:
+                            1
+                        </div>
+                    </t>
+            </t>
+        </xpath>
+    </t>
+ </t>
