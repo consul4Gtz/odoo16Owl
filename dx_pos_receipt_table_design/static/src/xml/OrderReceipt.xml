@@ -66,15 +66,15 @@
                 <table style="border: 1px solid;width:100%;text-align:center;" class="orderlines">
                     <tr style="border: 1px solid;">
                         <th style="border: 1px solid;">ISV</th>
-                        <td style="border: 1px solid;"> Description </td>
+                        <th style="border: 1px solid;"> Description </th>
                         <td></td>
-                        <td></td>
+                        <th></th>
                     </tr>
                     <tr style="border: 1px solid;">
                         <td style="border: 1px solid;"></td>
-                        <td style="border: 1px solid;"> Price </td>
-                        <td style="border: 1px solid;">Qty Und </td>
-                        <td style="border: 1px solid;">Total</td>
+                        <th style="border: 1px solid;"> Price </th>
+                        <th style="border: 1px solid;">Qty Und </th>
+                        <th style="border: 1px solid;">Total</th>
                     </tr>
                     <t t-foreach="receipt.orderlines" t-as="line" t-key="line.id">
                         <tr style="border: 1px solid;">
