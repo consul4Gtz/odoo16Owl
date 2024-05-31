@@ -4,7 +4,7 @@
         <xpath expr="//span[@class='product-name']/t[@t-esc='props.line.get_full_product_name()']" position="before">
             <t t-if="props.line.product.default_code">
                 <t t-esc="props.line.product.default_code"/>
-                <span> </span>
+                <span>1</span>
             </t>
         </xpath>
     </t>

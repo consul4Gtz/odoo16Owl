@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="ClearTicketButton">
+        <button class="btn btn-danger" t-on-click="onClick">
+            Limpiar Ticket
+        </button>
+    </template>
+
+    <template id="OrderWidget" inherit_id="point_of_sale.OrderWidget">
+        <xpath expr="//div[@class='button']" position="inside">
+            <t t-call="q_pos_ticket.ClearTicketButton"/>
+        </xpath>
+    </template>
+</odoo>
