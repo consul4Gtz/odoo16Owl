@@ -4,7 +4,6 @@
 
     <t t-name="l10n_hn_edi.AccountWhtaxField" owl="1">
         <div>
-
             <div>
                 <strong class="float-start"   t-esc="title"/>
             </div>

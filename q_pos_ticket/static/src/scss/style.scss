@@ -1,0 +1,48 @@
+.pos-receipt {
+    font-family: Arial, Helvetica, sans-serif;
+    .pos-receipt-contact > div:first-child {
+        background-color: #555555;
+        color: white;
+        font-size: 16px;
+        font-weight: bolder;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+    .pos-receipt-center-align:last-child,
+    .orderlines {
+        border-bottom: 1px solid #555555;
+        border-top: 1px solid #555555;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .orderlines {
+        font-size: 12px;
+    }
+    .orderlines-header {
+        display: flex;
+        > div:first-child {
+            width: 60%;
+        }
+        > div:not(:first-child) {
+            text-align: right;
+            width: 20%;
+        }
+    }
+    .responsive-price > span {
+        &:first-child {
+            width: 60%;
+        }
+        &:nth-child(2) {
+            width: 20%;
+            text-align: right;
+        }
+        &:last-child {
+            width: 15%;
+            text-align: right;
+        }
+    }
+    .pos-receipt-amount {
+        font-size: 12px;
+    }
+}

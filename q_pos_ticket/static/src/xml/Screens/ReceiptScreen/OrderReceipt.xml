@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('orderlines')]" position="before">
+            <div class="orderlines-header">
+                <div>Description</div>
+                <div>Quantity</div>
+                <div>Total</div>
+            </div>
+        </xpath>
+        <xpath expr="//div[@class='pos-receipt-contact']/t[@t-if='receipt.company.contact_address']" position="replace"/>
+        <xpath expr="//div[@class='pos-receipt-contact']/t[@t-if='receipt.company.phone']" position="replace"/>
+        <xpath expr="//div[@class='pos-receipt-contact']/t[@t-if='receipt.company.vat']" position="replace"/>
+        <xpath expr="//div[@class='pos-receipt-contact']/t[@t-if='receipt.company.email']" position="replace"/>
+        <xpath expr="//div[@class='pos-receipt-contact']/t[@t-if='receipt.company.website']" position="replace"/>
+    </t>
+    <t t-inherit="point_of_sale.OrderLinesReceipt" t-inherit-mode="extension">
+        <xpath expr="//div[@class='responsive-price']/span" position="before">
+            <span t-esc="line.quantity"/>
+        </xpath>
+        <xpath expr="//div[@class='responsive-price']/t[@t-esc='line.product_name_wrapped[0]']" position="replace">
+            <span>
+                <t t-if="line.product_default_code">
+                    [<t t-esc="line.product_default_code"/>]
+                </t>
+                <t t-esc="line.product_name_wrapped[0]"/>
+            </span>
+        </xpath>
+    </t>
+</templates>
