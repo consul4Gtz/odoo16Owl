@@ -7,7 +7,11 @@
                 <div>Quantity</div>
                 <div>Total</div>
             </div>
-        </xpath>
+            <div>
+                <p>test</p>
+                <br/>
+                <br/>
+            </div>
         <xpath expr="//div[@class='pos-receipt-contact']/t[@t-if='receipt.company.contact_address']" position="replace"/>
         <xpath expr="//div[@class='pos-receipt-contact']/t[@t-if='receipt.company.phone']" position="replace"/>
         <xpath expr="//div[@class='pos-receipt-contact']/t[@t-if='receipt.company.vat']" position="replace"/>

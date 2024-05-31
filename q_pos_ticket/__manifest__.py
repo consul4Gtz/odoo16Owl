@@ -3,7 +3,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 {
-    'name': 'Add Internal Reference to PoS Ticket',
+    'name': 'vista_ticket_Add Internal Reference to PoS Ticket',
     'category': 'Point of Sale',
     'summary': 'Add default code to pos ticket and screen widget.',
     'version': '16.0.0.0.1',
