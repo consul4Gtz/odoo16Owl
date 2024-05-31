@@ -12,7 +12,7 @@
 	'support': 'support@quadit.mx',
     'website' : 'https://www.quadit.mx',
     'depends': ['point_of_sale'],
-    'data':['views/pos_templates.xml'],
+    #'data':['views/pos_templates.xml'],
     'assets': {
         'point_of_sale.assets': [
             'q_pos_ticket/static/src/js/models.js',
