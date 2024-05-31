@@ -65,34 +65,52 @@
 <!--                Lines-->
                 <table style="border: 1px solid;width:100%;text-align:center;" class="orderlines">
                     <tr style="border: 1px solid;">
-                        <th style="border: 1px solid;">ISV</th>
-                        <th style="border: 1px solid;"> Description </br> Price </th>
-                        <th style="border: 1px solid;">Qty </br> Unidad </th>
-                        <th style="border: 1px solid;"></th>
-                        <td style="border: 1px solid;">Total</th>
+                        <td style="border: 1px solid;">ISV</td>
+                        <td style="border: 1px solid;"> Description </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr style="border: 1px solid;">
+                        <td style="border: 1px solid;"></td>
+                        <td style="border: 1px solid;"> Price </td>
+                        <td style="border: 1px solid;">Qty Unidad </td>
+                        <td style="border: 1px solid;">Total</td>
                     </tr>
                     <t t-foreach="receipt.orderlines" t-as="line" t-key="line.id">
                         <tr style="border: 1px solid;">
                             <td style="border: 1px solid;"> % </td>
                             <td style="border: 1px solid;"><t t-esc="line.product_name_wrapped[0]" />
-                            </br> <t t-esc="env.pos.format_currency_no_symbol(line.price_display_one)" />
                                 <t t-if="line.discount !== 0">
                                     <div class="pos-receipt-left-padding" style="font-size:10px;">
                                         Disc:<t t-esc="line.discount" />%
                                     </div>
                                 </t>
                             </td>
-                            <td style="border: 1px solid;"><t t-esc="line.quantity" /> </br> Und </td>
-
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid;"> % </td>
+                            <td style="border: 1px solid;">  <t t-esc="env.pos.format_currency_no_symbol(line.price_display_one)"/></td>
+                            <td style="border: 1px solid;"><t t-esc="line.quantity" /> </td>
                             <td style="border: 1px solid;"><t t-esc="env.pos.format_currency_no_symbol(line.price_display)" /></td>
+                        </tr>
+                        
+                        <tr>
+                            <td style="border: 1px solid;">  </td>
+                            <td style="border: 1px solid;">  </td>
+                            <td style="border: 1px solid;"> und </td>
+                            <td style="border: 1px solid;">  </td>
                         </tr>
                     </t>
                 </table>
                 <br />
                 <!-- Totales-->
-                <table style="border: 1px solid;width:800%;text-align:center;float:right;">
+                <table style="border: 1px solid;width:100%;text-align:center;float:right;">
                     <t t-if="receipt.total_discount">
                         <tr style="border: 1px solid;">
+                            <td></td>
+                            <td></td>
                             <td style="border: 1px solid;">Discounts</td>
                             <td style="border: 1px solid;"><t t-esc="env.pos.format_currency(receipt.total_discount)"/></td>
                         </tr>
@@ -105,26 +123,38 @@
                         </tr>
                     </t>
                     <tr style="border: 1px solid;">
+                        <td></td>
+                        <td></td>
                         <td style="border: 1px solid;">Importe Exonerado</td>
                         <td style="border: 1px solid;"></td>
                     </tr>
                     <tr style="border: 1px solid;">
+                        <td></td>
+                        <td></td>
                         <td style="border: 1px solid;">Importe Exento</td>
                         <td style="border: 1px solid;">1 </td>
                     </tr>
                     <tr style="border: 1px solid;">
+                        <td></td>
+                        <td></td>
                         <td style="border: 1px solid;">Importe 15%</td>
                         <td style="border: 1px solid;">1 </td>
                     </tr>
                     <tr style="border: 1px solid;">
+                        <td></td>
+                        <td></td>
                         <td style="border: 1px solid;">Importe 18% </td>
                         <td style="border: 1px solid;">1 </td>
                     </tr>
                     <tr style="border: 1px solid;">
+                        <td></td>
+                        <td></td>
                         <td style="border: 1px solid;">ISV 15%</td>
                         <td style="border: 1px solid;">1 </td>
                     </tr>
                     <tr style="border: 1px solid;">
+                        <td></td>
+                        <td></td>
                         <td style="border: 1px solid;">ISV 18% </td>
                         <td style="border: 1px solid;">1 </td>
                     </tr>
@@ -132,25 +162,35 @@
                     <t t-set="total_tax" t-value="env.pos.format_currency_no_symbol(receipt.total_tax)"/> 
                     <t t-if="total_tax &gt; 0.0">
                         <tr style="border: 1px solid;">
+                            <td></td>
+                            <td></td>
                             <td style="font-size:12px;border: 1px solid;">Total Taxes</td>
                             <td style="border: 1px solid;"><t t-esc="total_tax"/></td>
                         </tr>
                     </t>
                     <tr style="border: 1px solid;">
+                        <td></td>
+                        <td></td>
                         <td style="border: 1px solid;">TOTAL</td>
                         <td style="border: 1px solid;"><t t-esc="env.pos.format_currency(receipt.total_with_tax)"/></td>
                     </tr>
-
+                    <tr></tr>
                     <tr style="border: 1px solid;">
+                        <td></td>
+                        <td></td>
                         <td style="border: 1px solid;">Forma de pago</td>
                         <td style="border: 1px solid;"> </td>
                     </tr>  
                     
                     <tr style="border: 1px solid;">
+                        <td></td>
+                        <td></td>
                         <td style="border: 1px solid;">Efectivo</td>
                         <td style="border: 1px solid;">1212 </td>
                     </tr>
                     <tr style="border: 1px solid;">
+                        <td></td>
+                        <td></td>
                         <td style="border: 1px solid;">Pos BAC</td>
                         <td style="border: 1px solid;"> 1212</td>
                     </tr>
@@ -165,7 +205,7 @@
                     <tr><td>Valor en letras : <t t-esc="env.pos.format_currency(receipt.total_with_tax)"/> </td></tr>
                 </table>
                 <br/>
-                
+
                 <div class="before-footer" />
                 <!-- Footer -->
                 <div t-if="receipt.footer_html"  class="pos-receipt-center-align">
