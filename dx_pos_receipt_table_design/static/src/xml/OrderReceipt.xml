@@ -205,11 +205,12 @@
                     <tr style="border: 1px solid;" class="receipt-change">
                         <center> CHANGE <t t-esc='env.pos.format_currency(receipt.change)'/> </center>
                     </tr>
-                    <tr></tr>
-                    <tr> <center> Valor en letras : <t t-esc="env.pos.format_currency(receipt.total_with_tax)"/></center> </tr>
+                    <tr> <center> </center> </tr>
                 </table>
                 <br/>
-
+                <div style="text-align:left;float:left;">
+                    Valor en letras : <t t-esc="env.pos.format_currency(receipt.total_with_tax)"/>
+                </div>
                 <div class="before-footer" />
                 <!-- Footer -->
                 <div t-if="receipt.footer_html"  class="pos-receipt-center-align">
@@ -233,10 +234,8 @@
                 </div>
                 <br/>
                 <div class="pos-receipt-order-data">
-                
                    
                 </div>
-
             </div>
         </xpath>
     </t>
