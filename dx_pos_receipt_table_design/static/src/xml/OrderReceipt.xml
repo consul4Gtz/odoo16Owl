@@ -203,10 +203,10 @@
                         <td style="border: 1px solid;"><t t-esc='env.pos.format_currency(receipt.total_rounded)'/></td>
                     </tr>
                     <tr style="border: 1px solid;" class="receipt-change">
-                         CHANGE <t t-esc='env.pos.format_currency(receipt.change)'/>
+                        <center> CHANGE <t t-esc='env.pos.format_currency(receipt.change)'/> </center>
                     </tr>
                     <tr></tr>
-                    <tr>Valor en letras : <t t-esc="env.pos.format_currency(receipt.total_with_tax)"/> </tr>
+                    <tr> <center> Valor en letras : <t t-esc="env.pos.format_currency(receipt.total_with_tax)"/></center> </tr>
                 </table>
                 <br/>
 
