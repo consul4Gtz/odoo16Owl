@@ -46,9 +46,9 @@
                     <div style="text-align: left;">CAI: </div>
                     <div style="text-align: left;"> Rango:  000-000-01-12345001 -  000-000-01-12345999 </div>
                     <div style="text-align: left;">Fecha Limite : 01/01/2028</div>
-                    <div><t t-esc="receipt.name" /></div>
+                    <div style="text-align: left;"><t t-esc="receipt.name" /></div>
                     <t t-if="receipt.date.localestring">
-                        <div><t t-esc="receipt.date.localestring" /></div>
+                        <div style="text-align: left;">Fecha de factura: <t t-esc="receipt.date.localestring" /></div>
                     </t>
                     <t t-else="">
                         <div><t t-esc="receipt.date.validation_date" /></div>
@@ -75,6 +75,7 @@
                         <th style="border: 0px solid;">Qty Und </th>
                         <th style="border: 0px solid; text-align:right;">Total</th>
                     </tr>
+                    <tr style="border: 1px solid;"></tr>
                     <t t-foreach="receipt.orderlines" t-as="line" t-key="line.id">
                         <tr style="border: 0px solid;">
                             <td style="border: 0px solid;"> % </td>
@@ -101,7 +102,8 @@
                             <td style="border: 0px solid;">  </td>
                         </tr>
                     </t>
-
+                    <tr style="border: 1px solid;"></tr>
+                    <tr style="border: 0px solid;"></br></tr>
                 <!-- Totales-->
                     <t t-if="receipt.total_discount">
                         <tr style="border: 0px solid;">
@@ -154,7 +156,7 @@
                         <tr style="border: 0px solid;">
                             <td></td>
                             <td style="border: 0px solid; text-align:right;" colspan="2">Total Taxes</td>
-                            <td style="border: 0px solid text-align:right;"><t t-esc="total_tax"/></td>
+                            <td style="border: 0px solid; text-align:right;"><t t-esc="total_tax"/></td>
                         </tr>
                     </t>
                     <tr style="border: 0px solid;">
