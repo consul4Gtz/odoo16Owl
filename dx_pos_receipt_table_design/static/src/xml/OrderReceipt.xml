@@ -238,7 +238,7 @@
                     </t>
                     <div>
                         prueba importe 15%
-                        <t t-esc="isv15" class="pos-receipt-right-align"/>
+                        <t t-esc="impsv15" class="pos-receipt-right-align"/>
                     </div>
                     <div>
                         prueba amount 15%
