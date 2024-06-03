@@ -227,33 +227,31 @@
                 <t t-if="isTaxIncluded">
                     <t id="tax-details" t-foreach="receipt.tax_details" t-as="tax" t-key="tax.tax.id">
                         <t t-if="tax.name == 'ISV 15%'">
-                            <t t-esc="tax.name" />
                             <t t-set="impsv15" t-value="((receipt.total_with_tax)-(tax.amount))"/>
                             <t t-set="valisv15" t-value="tax.amount"/>
-                        </t>
-                            <div>
-                                prueba importe 15%
-                                <t t-esc="isv15" class="pos-receipt-right-align"/>
-                            </div>
-                            <div>
-                                prueba amount 15%
-                                <t t-esc="valisv15" class="pos-receipt-right-align"/>
-                            </div>
+                        </t> 
                         <t t-if="tax.name == 'ISV 18%'">
                                 <t t-esc="tax.name" />
                                 <t t-set="impsv18" t-value="((receipt.total_with_tax)-(tax.amount))"/>
                                 <t t-set="valisv18" t-value="tax.amount"/>
                         </t>
-                        <div>
-                            prueba importe 18%
-                            <t t-esc="impsv18" class="pos-receipt-right-align"/>
-                        </div>
-                        <div>
-                            prueba amount 18%
-                            <t t-esc="valisv18" class="pos-receipt-right-align"/>
-                        </div>
-                        
                     </t>
+                    <div>
+                        prueba importe 15%
+                        <t t-esc="isv15" class="pos-receipt-right-align"/>
+                    </div>
+                    <div>
+                        prueba amount 15%
+                        <t t-esc="valisv15" class="pos-receipt-right-align"/>
+                    </div>
+                    <div>
+                        prueba importe 18%
+                        <t t-esc="impsv18" class="pos-receipt-right-align"/>
+                    </div>
+                    <div>
+                        prueba amount 18%
+                        <t t-esc="valisv18" class="pos-receipt-right-align"/>
+                    </div>
                     <!-- <t t-set="total_tax" t-value="env.pos.format_currency_no_symbol(receipt.total_tax)"/>
                     <t t-esc="total_tax"/> -->
 
