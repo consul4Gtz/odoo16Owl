@@ -105,8 +105,7 @@
                             <td style="border: 0px solid;">  </td>
                         </tr>
                     </t>
-                <hr>
-                <br>
+
                 <!-- Totales-->
                     <t t-if="receipt.total_discount">
                         <tr style="border: 0px solid;">
@@ -167,7 +166,6 @@
                         <td style="border: 0px solid; text-align:right;" colspan="2">TOTAL</td>
                         <td style="border: 0px solid; text-align:right;"><t t-esc="env.pos.format_currency(receipt.total_with_tax)"/></td>
                     </tr>
-                    <br>
                     <tr><td colspan="4"> </td></tr>
                     <tr style="border: 0px solid;">
                         <td></td>
