@@ -34,19 +34,13 @@
                     <div>Sucursal: 1</div>
                     <div>Direccción Sucursal o punto de emision</div>
                     <!-- Direccion de la sucursal-->
-                    <t t-if="receipt.header_html">
-                        <t t-out="receipt.header_html" />
-                    </t>
-                    <t t-if="!receipt.header_html and receipt.header">
-                        <div style="white-space:pre-line"><t t-esc="receipt.header" /></div>
-                    </t>
-                    <div style="border-style: double;font-size:16px;width:25%;margin: auto;text-align:center;">
-                        <t t-esc="receipt.name.split('-')[2]"/>
-                    </div>
-                    <div>CAI: </div>
-                    <div> Rango:  000-000-01-12345001 -  000-000-01-12345999 </div>
-                    <div>Fecha Limite : 01/01/2028</div>
-                    <div><t t-esc="receipt.name" /></div>
+                    <br/>
+                    <div style="text-align:left;">Factura:</div>
+        
+                    <div style="text-align:left;">CAI: </div>
+                    <div style="text-align:left;"> Rango:  000-000-01-12345001 -  000-000-01-12345999 </div>
+                    <div style="text-align:left;">Fecha Limite : 01/01/2028</div>
+                    <div style="text-align:left;"><t t-esc="receipt.name" /></div>
                     <t t-if="receipt.date.localestring">
                         <div><t t-esc="receipt.date.localestring" /></div>
                     </t>
@@ -54,12 +48,12 @@
                         <div><t t-esc="receipt.date.validation_date" /></div>
                     </t>
                     <!-- <div>Fecha de Factura: 08/05/2024 </div> -->
-                    <div>Client:</div>
+                    <div style="text-align:left;">Client:</div>
                     <t t-if="receipt.client">
                         Client: <t t-esc="receipt.client.name"/>
                     </t>
-                    <div>RTN/DNI</div>
-                    <div style="text-align: center;">--------------------------------</div>
+                    <div style="text-align:left;"> RTN/DNI</div>
+                    
                     </div>
                 <br/>
 <!--                Lines-->
@@ -70,7 +64,7 @@
                         <td></td>
                         <th></th>
                     </tr>
-                    <tr style="border: 1px solid;">
+                    <tr style="border: 0px solid;">
                         <td style="border: 0px solid;"></td>
                         <th style="border: 0px solid;"> Price </th>
                         <th style="border: 0px solid;">Qty Und </th>
@@ -108,7 +102,7 @@
                     <t t-if="receipt.total_discount">
                         <tr style="border: 0px solid;">
                             <td></td>
-                            <td style="border: 0px solid; text-align:right" colspan="2" >Discounts</td>
+                            <td style="border: 0px solid; text-align:right" colspan="2" > </br> Discounts L.</td>
                             <td style="border: opx solid; text-align:right; "><t t-esc="env.pos.format_currency(receipt.total_discount)"/></td>
                         </tr>
                     </t>
@@ -122,32 +116,32 @@
                     </t>
                     <tr style="border: 0px solid;">
                         <td></td>
-                        <td style="border: 0px solid; text-align:right;" colspan="2">Importe Exonerado</td>
+                        <td style="border: 0px solid; text-align:right;" colspan="2">Importe Exonerado L.</td>
                         <td style="border: 0px solid; text-align:right;"></td>
                     </tr>
                     <tr style="border: 0px solid;">
                         <td></td>
-                        <td style="border: 0px solid; text-align:right;" colspan="2">Importe Exento</td>
+                        <td style="border: 0px solid; text-align:right;" colspan="2">Importe Exento L.</td>
                         <td style="border: 0px solid; text-align:right;" >1 </td>
                     </tr>
                     <tr style="border: 0px solid;">
                         <td></td>
-                        <td style="border: 0px solid; text-align:right;" colspan="2">Importe 15%</td>
+                        <td style="border: 0px solid; text-align:right;" colspan="2">Importe 15% L.</td>
                         <td style="border: 0px solid; text-align:right;">1:00 </td>
                     </tr>
                     <tr style="border: 0px solid;">
                         <td></td>
-                        <td style="border: 0px solid; text-align:right;" colspan="2">Importe 18% </td>
+                        <td style="border: 0px solid; text-align:right;" colspan="2">Importe 18% L.</td>
                         <td style="border: 0px solid; text-align:right;">1:00 </td>
                     </tr>
                     <tr style="border: 0px solid;">
                         <td></td>
-                        <td style="border: 0px solid; text-align:right;" colspan="2">ISV 15%</td>
+                        <td style="border: 0px solid; text-align:right;" colspan="2">ISV 15% L.</td>
                         <td style="border: 0px solid; text-align:right;">1:00 </td>
                     </tr>
-                    <tr style="border: 1px solid;">
+                    <tr style="border: 0px solid;">
                         <td></td>
-                        <td style="border: 0px solid; text-align:right;" colspan="2">ISV 18% </td>
+                        <td style="border: 0px solid; text-align:right;" colspan="2">ISV 18% L.</td>
                         <td style="border: 0px solid; text-align:right;">1:00 </td>
                     </tr>
 
@@ -155,16 +149,16 @@
                     <t t-if="total_tax &gt; 0.0">
                         <tr style="border: 0px solid;">
                             <td></td>
-                            <td style="border: 0px solid; text-align:right;" colspan="2">Total Taxes</td>
+                            <td style="border: 0px solid; text-align:right;" colspan="2">Total Taxes L.</td>
                             <td style="border: 0px solid text-align:right;"><t t-esc="total_tax"/></td>
                         </tr>
                     </t>
                     <tr style="border: 0px solid;">
                         <td></td>
-                        <td style="border: 0px solid; text-align:right;" colspan="2">TOTAL</td>
+                        <td style="border: 0px solid; text-align:right;" colspan="2">TOTAL L</td>
                         <td style="border: 0px solid; text-align:right;"><t t-esc="env.pos.format_currency(receipt.total_with_tax)"/></td>
                     </tr>
-                    <tr><td colspan="4"> </td></tr>
+                    <tr><td colspan="4"> </br> </td></tr>
                     <tr style="border: 0px solid;">
                         <td></td>
                         <td style="border: 0px solid; text-align:center;" colspan="3">Forma de pago</td>
@@ -186,7 +180,7 @@
                         <td style="border: 0px solid; text-align:right;"><t t-esc='env.pos.format_currency(receipt.total_rounded)'/></td>
                     </tr>
                     <tr>
-                    <td colspan="4" style="text-align:center;">CHANGE <t t-esc='env.pos.format_currency(receipt.change)'/> </td>
+                    <td colspan="4" style="text-align:center;"> </br> CHANGE <t t-esc='env.pos.format_currency(receipt.change)'/> </br> </td>
                     </tr>
                     <tr>
                     <td colspan="4" style="text-align:center;" >  Valor en letras : <t t-esc="env.pos.format_currency(receipt.total_with_tax)"/></td>
