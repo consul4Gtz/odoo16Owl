@@ -43,9 +43,9 @@
                     <div style="border-style: double;font-size:16px;width:25%;margin: auto;text-align:center;">
                         <t t-esc="receipt.name.split('-')[2]"/>
                     </div>
-                    <div>CAI: </div>
-                    <div> Rango:  000-000-01-12345001 -  000-000-01-12345999 </div>
-                    <div>Fecha Limite : 01/01/2028</div>
+                    <div style="text-align: left;">CAI: </div>
+                    <div style="text-align: left;"> Rango:  000-000-01-12345001 -  000-000-01-12345999 </div>
+                    <div style="text-align: left;">Fecha Limite : 01/01/2028</div>
                     <div><t t-esc="receipt.name" /></div>
                     <t t-if="receipt.date.localestring">
                         <div><t t-esc="receipt.date.localestring" /></div>
@@ -54,12 +54,11 @@
                         <div><t t-esc="receipt.date.validation_date" /></div>
                     </t>
                     <!-- <div>Fecha de Factura: 08/05/2024 </div> -->
-                    <div>Client:</div>
+                    <div style="text-align: left;">Client:</div>
                     <t t-if="receipt.client">
                         Client: <t t-esc="receipt.client.name"/>
                     </t>
-                    <div>RTN/DNI</div>
-                    <div style="text-align: center;">--------------------------------</div>
+                    <div style="text-align: left;">RTN/DNI</div>
                     </div>
                 <br/>
 <!--                Lines-->
@@ -70,7 +69,7 @@
                         <td></td>
                         <th></th>
                     </tr>
-                    <tr style="border: 1px solid;">
+                    <tr style="border: 0px solid;">
                         <td style="border: 0px solid;"></td>
                         <th style="border: 0px solid;"> Price </th>
                         <th style="border: 0px solid;">Qty Und </th>
@@ -91,11 +90,10 @@
                         </tr>
                         <tr>
                             <td style="border: 0px solid;"> </td>
-                            <td style="border: 0px solid;">  <t t-esc="env.pos.format_currency_no_symbol(line.price_display_one)"/></td>
-                            <td style="border: 0px solid;"><t t-esc="line.quantity" /> </td>
-                            <td style="border: 0px solid;"><t t-esc="env.pos.format_currency_no_symbol(line.price_display)" /></td>
+                            <td style="border: 0px solid; text-align: left;">  <t t-esc="env.pos.format_currency_no_symbol(line.price_display_one)"/></td>
+                            <td style="border: 0px solid; text-align: left;"><t t-esc="line.quantity" /> </td>
+                            <td style="border: 0px solid; text-align: left;"><t t-esc="env.pos.format_currency_no_symbol(line.price_display)" /></td>
                         </tr>
-                        
                         <tr>
                             <td style="border: 0px solid;">  </td>
                             <td style="border: 0px solid;">  </td>
@@ -145,7 +143,7 @@
                         <td style="border: 0px solid; text-align:right;" colspan="2">ISV 15%</td>
                         <td style="border: 0px solid; text-align:right;">1:00 </td>
                     </tr>
-                    <tr style="border: 1px solid;">
+                    <tr style="border: 0px solid;">
                         <td></td>
                         <td style="border: 0px solid; text-align:right;" colspan="2">ISV 18% </td>
                         <td style="border: 0px solid; text-align:right;">1:00 </td>
