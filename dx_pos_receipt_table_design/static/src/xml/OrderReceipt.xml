@@ -123,16 +123,22 @@
                                 <t t-set="impsv18" t-value="tax.base"/>
                                 <t t-set="valisv18" t-value="tax.amount"/>
                         </t>
+                        <t t-if="tax.name == 'EXE'">
+                                <t t-set="impexe" t-value="tax.base"/>
+                        </t>
+                        <t t-if="tax.name == 'EXO'">
+                            <t t-set="impexo" t-value="tax.base"/>
+                        </t>
                     </t>
                     <tr style="border: 0px solid;">
                         <td></td>
                         <td style="border: 0px solid; text-align:right;" colspan="2">Importe Exonerado</td>
-                        <td style="border: 0px solid; text-align:right;"></td>
+                        <td style="border: 0px solid; text-align:right;"><t t-esc="env.pos.format_currency_no_symbol(impexo)" class="pos-receipt-right-align"/> </td>
                     </tr>
                     <tr style="border: 0px solid;">
                         <td></td>
                         <td style="border: 0px solid; text-align:right;" colspan="2">Importe Exento</td>
-                        <td style="border: 0px solid; text-align:right;" >1 </td>
+                        <td style="border: 0px solid; text-align:right;" ><t t-esc="env.pos.format_currency_no_symbol(impexe)" class="pos-receipt-right-align"/>  </td>
                     </tr>
                     <tr style="border: 0px solid;">
                         <td></td>
