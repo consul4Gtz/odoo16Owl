@@ -54,7 +54,7 @@
                     </t>
                     <div style="text-align:left;"> RTN/DNI</div>
                     
-                </div>
+                    </div>
                 <br/>
 <!--                Lines-->
                 <table style="border: 0px solid;width:100%;text-align:center;" class="orderlines">
@@ -185,7 +185,9 @@
                     <tr>
                     <td colspan="4" style="text-align:center;" >  Valor en letras : <t t-esc="env.pos.format_currency(receipt.total_with_tax)"/></td>
                     </tr>
-                    
+                    <tr>
+                        <tr><td colspan="4"> </td></tr>
+                    </tr>
                     <tr>
                         <td colspan="4" style="text-align:left;">No. Carnet Diplomatico:</td>
                     </tr>
