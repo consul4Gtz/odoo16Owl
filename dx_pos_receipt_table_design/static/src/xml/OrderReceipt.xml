@@ -64,22 +64,22 @@
                 <br />
 <!--                Lines-->
                 <table style="border: 1px solid;width:100%;text-align:center;" class="orderlines">
-                    <tr style="border: 1px solid;">
-                        <th style="border: 1px solid;">ISV</th>
-                        <th style="border: 1px solid;"> Description </th>
+                    <tr style="border: 0px solid;">
+                        <th style="border: 0px solid;">ISV</th>
+                        <th style="border: 0px solid;"> Description </th>
                         <td></td>
                         <th></th>
                     </tr>
                     <tr style="border: 1px solid;">
-                        <td style="border: 1px solid;"></td>
-                        <th style="border: 1px solid;"> Price </th>
-                        <th style="border: 1px solid;">Qty Und </th>
-                        <th style="border: 1px solid;">Total</th>
+                        <td style="border: 0px solid;"></td>
+                        <th style="border: 0px solid;"> Price </th>
+                        <th style="border: 0px solid;">Qty Und </th>
+                        <th style="border: 0px solid;">Total</th>
                     </tr>
                     <t t-foreach="receipt.orderlines" t-as="line" t-key="line.id">
-                        <tr style="border: 1px solid;">
-                            <td style="border: 1px solid;"> % </td>
-                            <td style="border: 1px solid;"><t t-esc="line.product_name_wrapped[0]" />
+                        <tr style="border: 0px solid;">
+                            <td style="border: 0px solid;"> % </td>
+                            <td style="border: 0px solid;"><t t-esc="line.product_name_wrapped[0]" />
                                 <t t-if="line.discount !== 0">
                                     <div class="pos-receipt-left-padding" style="font-size:10px;">
                                         Disc:<t t-esc="line.discount" />%
@@ -90,17 +90,17 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td style="border: 1px solid;"> </td>
-                            <td style="border: 1px solid;">  <t t-esc="env.pos.format_currency_no_symbol(line.price_display_one)"/></td>
-                            <td style="border: 1px solid;"><t t-esc="line.quantity" /> </td>
-                            <td style="border: 1px solid;"><t t-esc="env.pos.format_currency_no_symbol(line.price_display)" /></td>
+                            <td style="border: 0px solid;"> </td>
+                            <td style="border: 0px solid;">  <t t-esc="env.pos.format_currency_no_symbol(line.price_display_one)"/></td>
+                            <td style="border: 0px solid;"><t t-esc="line.quantity" /> </td>
+                            <td style="border: 0px solid;"><t t-esc="env.pos.format_currency_no_symbol(line.price_display)" /></td>
                         </tr>
                         
                         <tr>
-                            <td style="border: 1px solid;">  </td>
-                            <td style="border: 1px solid;">  </td>
-                            <td style="border: 1px solid;"> und </td>
-                            <td style="border: 1px solid;">  </td>
+                            <td style="border: 0px solid;">  </td>
+                            <td style="border: 0px solid;">  </td>
+                            <td style="border: 0px solid;"> und </td>
+                            <td style="border: 0px solid;">  </td>
                         </tr>
                     </t>
                 </table>
@@ -204,8 +204,8 @@
                     </tr>
                 </table>
                 <br/>
-                <div>
-                    <center> CHANGE <t t-esc='env.pos.format_currency(receipt.change)'/> </center> </br>
+                <div style="text-align:center;float:center;">
+                CHANGE <t t-esc='env.pos.format_currency(receipt.change)'/></br>
                 </div>
                 <div style="text-align:left;float:left;">
                     Valor en letras : <t t-esc="env.pos.format_currency(receipt.total_with_tax)"/> <br/>
@@ -215,7 +215,7 @@
                 <div t-if="receipt.footer_html"  class="pos-receipt-center-align">
                     <t t-out="receipt.footer_html" />
                 </div>
-                <div style="text-align: center;">--------------------------------</div>
+                
             <div t-if="!receipt.footer_html and receipt.footer"  class="pos-receipt-center-align" style="white-space:pre-line">
                     <br/>
                     <t t-esc="receipt.footer" />
@@ -232,8 +232,7 @@
                     </t>
                 </div>
                 <br/>
-                <div class="pos-receipt-order-data">
-                   
+                <div class="pos-receipt-order-data">  
                 </div>
             </div>
         </xpath>
