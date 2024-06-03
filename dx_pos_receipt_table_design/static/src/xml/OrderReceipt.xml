@@ -228,6 +228,7 @@
                     <t id="tax-details" t-foreach="receipt.tax_details" t-as="tax" t-key="tax.tax.id">
                         <t t-if="tax.name == 'ISV por Pagar'">
                             <t t-esc="tax.name" />
+                            <p>15%</p>
                             <t t-set="isv15" t-value="((receipt.total_with_tax)-(tax.amount))"/>
                         </t>
                             <div>
