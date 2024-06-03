@@ -78,7 +78,8 @@
                     <tr style="border: 1px solid;"></tr>
                     <t t-foreach="receipt.orderlines" t-as="line" t-key="line.id">
                         <tr style="border: 0px solid;">
-                            <td style="border: 0px solid;"> % </td>
+                            <!-- amount: tax_percentages:-->
+                            <td style="border: 0px solid;"> <t t-esc="line.tax_percentages[0]" /> % </td>
                             <td style="border: 0px solid;"><t t-esc="line.product_name_wrapped[0]" />
                                 <t t-if="line.discount !== 0">
                                     <div class="pos-receipt-left-padding" style="font-size:10px;">
@@ -109,7 +110,7 @@
                         <tr style="border: 0px solid;">
                             <td></td>
                             <td style="border: 0px solid; text-align:right" colspan="2" >Discounts</td>
-                            <td style="border: opx solid; text-align:right; "><t t-esc="env.pos.format_currency(receipt.total_discount)"/></td>
+                            <td style="border: 0px solid; text-align:right; "><t t-esc="env.pos.format_currency(receipt.total_discount)"/></td>
                         </tr>
                     </t>
 
