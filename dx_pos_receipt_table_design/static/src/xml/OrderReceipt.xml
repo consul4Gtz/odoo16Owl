@@ -112,14 +112,7 @@
                             <td style="border: opx solid; text-align:right; "><t t-esc="env.pos.format_currency(receipt.total_discount)"/></td>
                         </tr>
                     </t>
-                        <!--pagos-->
-                    <t t-foreach="receipt.paymentlines" t-as="line" t-key="line.cid">
-                        <tr style="border: 0px solid;">
-                            <td></td>
-                            <td style="border: 0px solid; text-align:right;" colspan="2"><t t-esc="line.name" /></td>
-                            <td style="border: 0px solid; text-align:right;"><t t-esc="env.pos.format_currency_no_symbol(line.amount)" class="pos-receipt-right-align"/></td>
-                        </tr>
-                    </t>
+
                     <!-- Importes e impuestos -->
                     <t id="tax-details" t-foreach="receipt.tax_details" t-as="tax" t-key="tax.tax.id">
                         <t t-if="tax.name == 'ISV 15%'">
@@ -178,19 +171,16 @@
                     <tr><td colspan="4"> </td></tr>
                     <tr style="border: 0px solid;">
                         <td></td>
-                        <td style="border: 0px solid; text-align:center;" colspan="3">Forma de pago</td>
+                        <td style="border: 0px solid; text-align:center;" colspan="3"> <br></br> Forma de pago</td>
                     </tr>  
-                    
-                    <tr style="border: 0px solid;">
-                        <td></td>
-                        <td style="border: 0px solid; text-align:right;" colspan="2">Efectivo</td>
-                        <td style="border: 0px solid; text-align:right;">1212 </td>
-                    </tr>
-                    <tr style="border: 0px solid;">
-                        <td></td>
-                        <td style="border: 0px solid; text-align:right;" colspan="2">Pos BAC</td>
-                        <td style="border: 0px solid; text-align:right;"> 1212</td>
-                    </tr>
+                     <!--pagos-->
+                    <t t-foreach="receipt.paymentlines" t-as="line" t-key="line.cid">
+                        <tr style="border: 0px solid;">
+                            <td></td>
+                            <td style="border: 0px solid; text-align:right;" colspan="2"><t t-esc="line.name" /></td>
+                            <td style="border: 0px solid; text-align:right;"><t t-esc="env.pos.format_currency_no_symbol(line.amount)" class="pos-receipt-right-align"/></td>
+                        </tr>
+                    </t>
                     <tr style="border: 0px solid;">
                         <td></td>
                         <td style="border: 0px solid; text-align:right;" colspan="2">To Pay</td>
