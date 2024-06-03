@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('before-footer')]" position="after">
+            <div t-if="!isRefunded" class="pos-receipt-order-data" style="word-break: break-all">
+                <div>--------------------------------</div>
+                CAI: <span t-esc="configCAI"/><br />
+                <span t-esc="receiptNumber"/><br />
+            </div>
+            <div t-if="isRefunded" class="pos-receipt-order-data" style="word-break: break-all">
+                <div>--------------------------------</div>
+                CAI: <span t-esc="configRefundCAI"/><br />
+                <span t-esc="receiptNumberRefund"/><br />
+            </div>
+            <div t-if="sag" class="pos-receipt-order-data" style="word-break: break-all">
+                Sag Registration: <span t-esc="sag"/><br />
+            </div>
+            <div t-if="exemptPurchase" class="pos-receipt-order-data" style="word-break: break-all">
+                Exempt Purchase Order: <span t-esc="exemptPurchase"/><br />
+            </div>
+            <div t-if="exemptedProof" class="pos-receipt-order-data" style="word-break: break-all">
+                Exempt Registration Certificate: <span t-esc="exemptedProof"/><br />
+            </div>
+            <div t-if="diplomatic" class="pos-receipt-order-data" style="word-break: break-all">
+                Carnet de Diplomatico: <span t-esc="diplomatic"/><br />
+            </div>
+            <br /><br />
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_pos_form" model="ir.ui.view">
+        <field name="name">pos.order.form.view.inherit.l10n_hn_edi_sag</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form//field[@name='company_id']" position="after">
+                <field name="l10n_hn_edi_sag" attrs="{'invisible': [('l10n_hn_edi_sag', '=', False)]}"/>
+                <field name="l10n_hn_edi_diplomatic" attrs="{'invisible': [('l10n_hn_edi_diplomatic', '=', False)]}"/>
+                <field name="l10n_hn_edi_exempt_order" attrs="{'invisible': [('l10n_hn_edi_exempt_order', '=', False)]}"/>
+                <field name="l10n_hn_edi_exempt_certificate" attrs="{'invisible': [('l10n_hn_edi_exempt_certificate', '=', False)]}"/>
+                <field attrs="{'invisible': [('l10n_hn_edi_number_receipt_refund', '=', False)]}" name="l10n_hn_edi_number_receipt_refund" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

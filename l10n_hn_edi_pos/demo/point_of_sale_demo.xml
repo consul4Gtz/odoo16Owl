@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="payment_method_hn" model="pos.payment.method">
+        <field name="name">Cash</field>
+        <field name="journal_id" model="account.journal" eval="obj().search([('type', '=', 'cash'), ('company_id', '=', obj().env.ref('l10n_hn.demo_company_hn').id)])"/>
+        <field name="company_id" ref="l10n_hn.demo_company_hn"/>
+    </record>
+    <record id="sequence_credit_note_00000106" model="ir.sequence">
+        <field name="name">NC 00000106</field>
+        <field name="code">NC00000106</field>
+        <field name="implementation">no_gap</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="False" name="use_date_range"/>
+        <field eval="1" name="company_id"/>
+        <field name="padding">8</field>
+        <field name="prefix">000-001-06-</field>
+        <field name="l10n_hn_edi_cai_id" ref="l10n_hn_edi.cai_hn"/>
+        <field eval="1" name="l10n_hn_min_range_number"/>
+        <field eval="100" name="l10n_hn_max_range_number"/>
+    </record>
+    <record model="pos.config" id="pos_config_main_hn">
+        <field name="name">Shop HN</field>
+        <field name="company_id" ref="l10n_hn.demo_company_hn"/>
+        <field name="l10_hn_sequence_refund_id" ref="sequence_credit_note_00000106"/>
+        <field name="journal_id" model="account.journal" eval="obj().search([('type', '=', 'sale'), ('company_id', '=', obj().env.ref('l10n_hn.demo_company_hn').id)])"/>
+        <field name="invoice_journal_id" model="account.journal" eval="obj().search([('type', '=', 'sale'), ('company_id', '=', obj().env.ref('l10n_hn.demo_company_hn').id)])"/>
+        <field name="payment_method_ids" eval="[(6, 0, [ref('l10n_hn_edi_pos.payment_method_hn')])]"/>
+    </record>
+</odoo>
