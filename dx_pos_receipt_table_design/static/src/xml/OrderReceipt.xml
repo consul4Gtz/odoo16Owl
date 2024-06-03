@@ -144,22 +144,22 @@
                     <tr style="border: 0px solid;">
                         <td></td>
                         <td style="border: 0px solid; text-align:right;" colspan="2">Importe 15%</td>
-                        <td style="border: 0px solid; text-align:right;"> <t t-esc="impsv15" class="pos-receipt-right-align"/> </td>
+                        <td style="border: 0px solid; text-align:right;"> <t t-esc="env.pos.format_currency_no_symbol(impsv15)" class="pos-receipt-right-align"/> </td>
                     </tr>
                     <tr style="border: 0px solid;">
                         <td></td>
                         <td style="border: 0px solid; text-align:right;" colspan="2">Importe 18% </td>
-                        <td style="border: 0px solid; text-align:right;"><t t-esc="impsv18" class="pos-receipt-right-align"/> </td>
+                        <td style="border: 0px solid; text-align:right;"><t t-esc="env.pos.format_currency_no_symbol(impsv18)" class="pos-receipt-right-align"/> </td>
                     </tr>
                     <tr style="border: 0px solid;">
                         <td></td>
                         <td style="border: 0px solid; text-align:right;" colspan="2">ISV 15%</td>
-                        <td style="border: 0px solid; text-align:right;"> <t t-esc="valisv15" class="pos-receipt-right-align"/> </td>
+                        <td style="border: 0px solid; text-align:right;"> <t t-esc="env.pos.format_currency_no_symbol(valisv15)" class="pos-receipt-right-align"/> </td>
                     </tr>
                     <tr style="border: 0px solid;">
                         <td></td>
                         <td style="border: 0px solid; text-align:right;" colspan="2">ISV 18% </td>
-                        <td style="border: 0px solid; text-align:right;"><t t-esc="valisv18" class="pos-receipt-right-align"/></td>
+                        <td style="border: 0px solid; text-align:right;"><t t-esc="env.pos.format_currency_no_symbol(valisv18)" class="pos-receipt-right-align"/></td>
                     </tr>
 
                     <t t-set="total_tax" t-value="env.pos.format_currency_no_symbol(receipt.total_tax)"/> 
