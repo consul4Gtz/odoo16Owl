@@ -232,18 +232,6 @@
                 </table>
                 <br/>
                 <!-- Probando taxtdetail con impuesto incluido-->
-                <t t-if="isTaxIncluded"> 
-                    <t id="tax-details" t-foreach="receipt.tax_details" t-as="tax" t-key="tax.tax.id">
-                        <div>
-                            <t t-esc="tax.name" />
-                            <span t-esc="env.pos.format_currency_no_symbol(tax.amount)" class="pos-receipt-right-align"/>
-                        </div>
-                    </t>
-                    <div>
-                        Total Taxes 2
-                        <span t-esc="env.pos.format_currency(receipt.total_tax)" class="pos-receipt-right-align"/>
-                    </div>
-                </t>
                 <div class="before-footer" />
                 <!-- Footer -->
                 <div t-if="receipt.footer_html"  class="pos-receipt-center-align">
