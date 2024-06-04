@@ -40,7 +40,7 @@ class PosConfig(models.Model):
     prefix_refund = fields.Char("Prefix Refund", related='l10_hn_sequence_refund_id.prefix')
 
     #prueba de campos para sucursal
-    sucursal_name = fields.Char(string='Branch', required=True, store=True)
+    sucursal_name = fields.Char(string='Sucursal', required=True, store=True)
     sucursal_adress = fields.Char()
 
     @api.constrains('sequence_id')
