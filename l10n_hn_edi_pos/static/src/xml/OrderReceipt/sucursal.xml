@@ -3,7 +3,7 @@
 <templates id="template" xml:space="preserve">
     <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt"
        t-inherit-mode="extension" owl="1">
-        <xpath expr="//div[hasclass('pos-receipt-contact')]/t[1]" position="after">
+        <xpath expr="//div[hasclass('pos-receipt-contact')]/t[5]" position="after">
                 <div>Sucursal: <t t-esc="env.pos.config.sucursal_name"/></div>
                 <div>Direccion Sucursal: <t t-esc="env.pos.config.sucursal_adress"/></div>
         </xpath>

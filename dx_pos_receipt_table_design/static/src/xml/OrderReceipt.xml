@@ -30,10 +30,10 @@
                         <div>Sitio web<t t-esc="receipt.company.website" /></div>
                     </t>
                     <br/>
-                    <!-- Sucursal-->
-                    <div>Sucursal: 1</div>
-                    <div>Direccción Sucursal o punto de emision</div>
+                    <!-- Sucursal despues de termianl 5 se imprime desde el modulo edipos_hn-->
+                    
                     <!-- Direccion de la sucursal-->
+                    <br/>
                     <t t-if="receipt.header_html">
                         <t t-out="receipt.header_html" />
                     </t>
