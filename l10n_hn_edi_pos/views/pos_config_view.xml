@@ -24,8 +24,8 @@
                     <div class="o_address_format">
                         <label for="sucursal_name" string="Sucursal"/>
                         <field name="sucursal_name"/>
-                        <label for="adress_sucursal" string="Dirección"/>
-                        <field name="adress_sucursal" placeholder="Dirección..." class="o_address_street"/>
+                        <label for="sucursal_adress" string="Dirección"/>
+                        <field name="sucursal_adress" placeholder="Dirección..." class="o_address_street"/>
                     </div>
             
             </xpath>
