@@ -59,7 +59,7 @@
                         Client: <t t-esc="receipt.client.name"/>
                     </t>
                     <div style="text-align: left;">RTN/DNI</div>
-                    </div>
+                </div>
                 <br/>
 <!--                Lines-->
                 <table style="border: 0px solid;width:100%;text-align:center;" class="orderlines">
