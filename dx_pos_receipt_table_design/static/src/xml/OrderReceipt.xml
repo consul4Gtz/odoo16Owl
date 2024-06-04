@@ -33,16 +33,14 @@
                     <!-- Sucursal despues de termianl 5 se imprime desde el modulo edipos_hn-->
                     
                     <!-- Direccion de la sucursal-->
-                    <br/>
+                
                     <t t-if="receipt.header_html">
                         <t t-out="receipt.header_html" />
                     </t>
                     <t t-if="!receipt.header_html and receipt.header">
                         <div style="white-space:pre-line"><t t-esc="receipt.header" /></div>
                     </t>
-                    <div style="border-style: double;font-size:16px;width:25%;margin: auto;text-align:center;">
-                        <t t-esc="receipt.name.split('-')[2]"/>
-                    </div>
+                   
                     <div style="text-align: left;">CAI: </div>
                     <div style="text-align: left;"> Rango:  000-000-01-12345001 -  000-000-01-12345999 </div>
                     <div style="text-align: left;">Fecha Limite : 01/01/2028</div>

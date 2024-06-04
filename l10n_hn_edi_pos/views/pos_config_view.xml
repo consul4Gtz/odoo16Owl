@@ -20,8 +20,6 @@
                         </div>
                     </div>
                    <br></br>
-                    <div class="o_setting_left_pane">
-                    </div>
                 <!-- PROBANDO CAMPOS PARA SUCURSAL-->
                     <div class="o_address_format">
                         <label for="sucursal_name" string="Sucursal"/>
