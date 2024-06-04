@@ -22,16 +22,13 @@
                    <br></br>
                     <div class="o_setting_left_pane">
                     </div>
-                
                 <!-- PROBANDO CAMPOS PARA SUCURSAL-->
-                <div class="o_setting_right_pane">
                     <div class="o_address_format">
                         <label for="sucursal_name" string="Sucursal"/>
                         <field name="sucursal_name"/>
                         <label for="sucursal_adress" string="Dirección"/>
                         <field name="sucursal_adress" placeholder="Dirección..." class="o_address_street"/>
                     </div>
-                </div>
             </div> 
             </xpath>
         </field>
