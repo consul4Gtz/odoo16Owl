@@ -39,6 +39,10 @@ class PosConfig(models.Model):
                                   related='l10_hn_sequence_refund_id.l10n_hn_edi_cai_id.authorization_end_date')
     prefix_refund = fields.Char("Prefix Refund", related='l10_hn_sequence_refund_id.prefix')
 
+    #prueba de campos para sucursal
+    sucursal_name = fields.Char(string='Branch', required=True, store=True)
+    sucursal_adress = fields.Char()
+
     @api.constrains('sequence_id')
     def _check_sequence_settings(self):
         for config in self.filtered(lambda c: c.company_id.country_id == self.env.ref('base.hn') and
