@@ -81,6 +81,9 @@ class PointOfSaleBranch(models.Model):
     branch_name = fields.Char(string="Branch Name", store=True,
                               help='Branch name',
                               related='branch_id.name')
+    #probando si se puede agregar el campo de direccion
+    
+    branch_adress= fields.Char(related='branch_id.street', string="Address Branch",store=True)
     email = fields.Char(related='branch_id.email', string="Email",
                         help='Email of specific branch', store=True)
     phone = fields.Char(related='branch_id.phone', string="Phone",

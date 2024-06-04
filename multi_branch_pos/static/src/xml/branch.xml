@@ -5,7 +5,9 @@
        t-inherit-mode="extension" owl="1">
         <xpath expr="//div[hasclass('pos-receipt-contact')]/t[1]" position="after">
             <t t-if="env.pos.config.branch_id">
-                <div>Branch: <t t-esc="env.pos.config.branch_name"/></div>
+                <div>Sucursal: <t t-esc="env.pos.config.branch_name"/></div>
+                <div>Direccion Sucursal: <t t-esc="env.pos.config.branch_adress"/></div>
+                
             </t>
         </xpath>
     </t>
