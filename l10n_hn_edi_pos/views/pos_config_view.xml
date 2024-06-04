@@ -24,16 +24,14 @@
                 <!-- PROBANDO CAMPOS PARA SUCURSAL-->
                 <div class="col-12 col-lg-8 o_setting_box">
                  <div class="o_setting_right_pane">
-                    <div class="o_address_format">
-                    <div class="content-group mt16 row"> 
-                        <label for="sucursal_name" string="Sucursal"/>
-                        <field name="sucursal_name"/>
-                    </div>
-                    <div class="content-group mt16 row"> 
-                        <label for="sucursal_adress" string="Dirección"/>
-                        <field name="sucursal_adress" placeholder="Dirección..." class="o_address_street"/>
-                    </div>
-                </div>
+                        <div class="content-group mt16 row"> 
+                            <label for="sucursal_name" string="Sucursal"/>
+                            <field name="sucursal_name"/>
+                        </div>
+                         <div class="content-group mt16 row"> 
+                             <label for="sucursal_adress" string="Dirección"/>
+                             <field name="sucursal_adress" placeholder="Dirección..." class="o_address_street"/>
+                         </div>
                  </div>
                 </div>
             </xpath>
