@@ -50,8 +50,7 @@ class SaleOrderLine(models.Model):
                 res.sale_line_stock_widget = json.dumps(False)
 
 
-   sale_line_stock_widget = fields.Text(
-        "Stock", compute='_get_stock_info_JSON', readonly=True)
+   sale_line_stock_widget = fields.Text("Stock", compute='_get_stock_info_JSON', readonly=True)
     #campo extra para qque muestre el widget
     widget = fields.Text("Stock", readonly=False)
     # sale_line_stock_widget_text = fields.Char(string="Stocks",compute="Test" )
