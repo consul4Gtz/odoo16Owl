@@ -6,18 +6,12 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock_qty"/>
             <field name="arch" type="xml">
-
-                <!-- <xpath expr="//page/field[@name='order_line']/tree/widget[@name='qty_at_date_widget']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath> -->
+                
                 <xpath expr="//page/field[@name='order_line']/tree/field[@name='display_qty_widget']" position="after">
+                    <field name="widget" widget="sale_line_stock_widget_js" invisible="0"/> 
                     <field name="sale_line_stock_widget" invisible="1"/>
-                    <widget name="sale_line_stock_widget" width="20px"/>
                 </xpath>
 
-                <!--<xpath expr="//page/field[@name='order_line']/tree/field[@name='qty_to_invoice']" position="after">
-                    <field name="stock_widget" widget="stock" style="white-space: normal;" />
-                </xpath>-->
             </field>
         </record>
 

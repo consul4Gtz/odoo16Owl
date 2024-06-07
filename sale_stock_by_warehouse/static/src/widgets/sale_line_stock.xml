@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template id="template" xml:space="preserve">
+    <t t-name="sale_stock_by_warehouse.ShowWarehouseSaleLineStockProducts" owl="1">
+        <div>
+            <a tabindex="0" t-attf-class="fa fa-area-chart" t-on-click="showPopup" />
+        </div>
+
+    </t>
+
+    <t t-name="sale_stock_by_warehouse.DetailPopOver" owl="1">
+        <div>
+            <!-- <h6> <span t-esc="lines.lines.title"/></h6> -->
+            <h6> <span t-esc="props.title"/></h6>
+        </div> 
+        <table class="table table-sm o_main_table">
+            <thead>
+                <tr>
+                    <th class="text-right" >Almacen</th>
+                    <th class="text-right" >| Stock disponible</th>
+                   <th class="text-right" >| Real</th>
+                </tr>
+            </thead>
+            <tbody class="sale_tbody">
+                  <t class="text-right" t-foreach="props.lines['content']" t-as="list" t-key="list_id" >
+                       <tr >
+                          <td>
+                             <strong t-esc="list.name"/>
+                          </td>
+                          <td class="text-right text-success" style="text-align:right" >
+                              <span t-esc="list.stock_disponible"/>
+                           </td>
+                          <td  class="text-right" style="text-align:right" >
+                              <strong t-esc="list.stock_real"/>
+                           </td>
+                       </tr>
+                   </t>
+            </tbody>
+          </table>
+    </t>
+</template>
