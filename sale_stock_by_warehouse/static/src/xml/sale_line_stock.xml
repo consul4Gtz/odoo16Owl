@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+   <div t-name="sale_stock_by_warehouse.ShowWarehouseSaleLineStockProduct">
+        <!--<div t-att-class="!widget.data.display_qty_widget ? 'invisible' : ''">-->
+         <div>
+            <!--<a tabindex="0" t-attf-class="fa fa-area-chart {{ widget.data.forecasted_issue ? 'text-danger' : 'text-primary' }}"/>-->
+            <a tabindex="0" t-attf-class="fa fa-area-chart"/>
+        </div>
+    </div>
+
+    <t t-name="sale_stock_by_warehouse.ProductWarehouseSaleLineStockPopOver">
+       <table class="table table-sm o_main_table">
+         <thead>
+             <tr>
+                 <th class="text-right" >Almacen</th>
+                 <th class="text-right" >| Stock disponible</th>
+                <th class="text-right" >| Real</th>
+             </tr>
+         </thead>
+         <tbody class="sale_tbody">
+               <t class="text-right" t-foreach="lines['content']" t-as="list">
+                    <tr >
+                       <td>
+                          <strong t-esc="list.name"/>
+                       </td>
+                       <td class="text-right text-success" >
+                           <span t-esc="list.stock_disponible"/>
+                        </td>
+                       <td  class="text-right">
+                           <strong t-esc="list.stock_real"/>
+                        </td>
+                    </tr>
+               </t>
+         </tbody>
+       </table>
+
+    </t>
+
+</templates>
+
+ 
