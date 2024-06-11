@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_template_header,access_account_template_header,model_account_template_header,base.group_user,1,1,1,1
+access_account_template_line,access_account_template_line,model_account_template_line,base.group_user,1,1,1,1
+access_account_template_header,account.template.header,model_account_template_header,,1,1,1,1
+access_account_template_line,account.template.line,model_account_template_line,,1,1,1,1

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_account_template_action"
+          name="Plantillas"
+          parent="account_template.menu_account_template_root"
+          action="account_template.action_view_template"
+          sequence="10" />
+    <menuitem id="menu_account_template_root"
+          name="Plantillas de Asientos"
+          parent="account.menu_finance_configuration"
+          sequence="20" />
+</odoo>
