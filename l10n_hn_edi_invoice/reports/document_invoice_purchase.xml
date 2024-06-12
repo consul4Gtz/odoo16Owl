@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="document_invoice" name="document_invoice">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <div class="header">
+                        <div class="row" style="border-bottom:5px solid #e3e4e5">
+                            <div class="col-3">
+                                <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height:80px;margin-top:10px" alt="Logo"/>
+                            </div>
+                            <div class="col-9">
+                                <span t-field="o.company_id" style="font-weight:bold;font-size:20px"/>
+                                <br/>
+                                <span>De: Gladys Maria Chinchilla Toledo</span>
+                                <br/>
+                                <span>RTN:</span>
+                                <span t-field="o.company_id.vat"/>
+                                <br/>
+                                <span>Dirección:</span>
+                                <span t-field="o.company_id.street"/>
+                                <br/>
+                                <span>Email:</span>
+                                <span t-field="o.company_id.email"/>
+                                <span>|</span>
+                                <span>Tel:</span>
+                                <span t-field="o.company_id.phone"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12" style="margin-top:10px;font-weight:bold;">
+                            <h2>
+                                <span>BOLETA DE COMPRA No.</span>
+                                <span t-if="o.name != '/'" t-field="o.name"/>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:20px;">
+                        <div class="col-6" style="font-size:24px">
+                            <span>Proveedor:</span>
+                            <span t-field="o.partner_id"/>
+                            <br/>
+                            <span>RTN:</span>
+                            <span t-field="o.partner_id.vat"/>
+                            <br/>
+                            <span>Dirección:</span>
+                            <span t-field="o.company_id.street"/>
+                        </div>
+                        <div class="col-6" style="font-size:24px">
+                            <span>CAI:</span>
+                            <span t-field="o.l10n_hn_pr_edi_cai_id.name"/>
+                            <br/>
+                            <span>Rango Autorizado:</span>
+                            <span>Desde:</span>
+                            <t t-set="min_range_number" t-value="'%s%s' % (o.l10n_hn_pr_edi_cai_id.sequence_ids[0].prefix, str(o.l10n_hn_pr_edi_cai_id.sequence_ids[0].l10n_hn_min_range_number).zfill(o.l10n_hn_pr_edi_cai_id.sequence_ids[0].padding))"/>
+                            <t t-set="max_range_number" t-value="'%s%s' % (o.l10n_hn_pr_edi_cai_id.sequence_ids[0].prefix, str(o.l10n_hn_pr_edi_cai_id.sequence_ids[0].l10n_hn_max_range_number).zfill(o.l10n_hn_pr_edi_cai_id.sequence_ids[0].padding))"/>
+                            <span t-esc="min_range_number"/>
+                            <br/>
+                            <span>Hasta:</span>
+                            <span t-esc="max_range_number"/>
+                            <br/>
+                            <span>Fecha limite de emisión:</span>
+                            <span t-field="o.authorization_end_date"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table table-sm o_main_table" style="margin-top:10px;margin-bottom:0px;font-size:26px">
+                            <thead style="background-color:#e3e4e5;border:1px solid #ecedee; color:black">
+                                <tr>
+                                    <th style="text-align:left">Descripcion</th>
+                                    <th style=";text-align:end">Cantidad</th>
+                                    <th style=";text-align:end">Precio</th>
+                                    <th style=";text-align:end"> Total</th>
+                                </tr>
+                            </thead>
+                            <tbody class="invoice_tbody" style="border-top:1px solid white">
+                                <t t-set="pesototall" t-value="0"/>
+                                <t t-set="line_weight" t-value="0"/>
+                                <t t-set="conteo" t-value="0"/>
+                                <t t-set="isv" t-value="0"/>
+                                <t t-set="descuento" t-value="0.00"/>
+                                <t t-set="exento" t-value="0.00"/>
+                                <t t-set="exonerado" t-value="0.00"/>
+                                <t t-set="isv15" t-value="0.00"/>
+                                <t t-set="isv18" t-value="0.00"/>
+                                <t t-set="gravado_con_impuesto" t-value="0.00"/>
+                                <t t-set="gravado" t-value="0.00"/>
+                                <t t-set="gravado18" t-value="0.00"/>
+                                <t t-set="current_subtotal" t-value="0"/>
+                                <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
+                                <t t-set="row_index" t-value="0"/>
+                                <t t-foreach="lines" t-as="line">
+                                    <t t-set="row_index" t-value="row_index + 1"/>
+                                    <t t-set="line_weight" t-value="line.quantity * line.product_id.weight"/>
+                                    <t t-set="pesototall" t-value="pesototall + line_weight"/>
+                                    <t t-foreach="line" t-as="impuesto">
+                                        <t t-if="impuesto.tax_ids.name == 'ISV 15%' or impuesto.tax_ids.name == 'ISC 15%'">
+                                            <t t-set="isv15" t-value="isv15 + (impuesto.price_total - impuesto.price_subtotal)"/>
+                                        </t>
+                                        <t t-if="impuesto.tax_ids.name == 'ISV 18%' or impuesto.tax_ids.name == 'ISC 18%'">
+                                            <t t-set="isv18" t-value="isv18 +(impuesto.price_total - impuesto.price_subtotal)"/>
+                                        </t>
+                                        <t t-if="impuesto.tax_ids.name == 'ISV 15%' or impuesto.tax_ids.name == 'ISC 15%'">
+                                            <t t-set="gravado" t-value="gravado + impuesto.price_subtotal "/>
+                                        </t>
+                                        <t t-if="impuesto.tax_ids.name == 'ISV 18%' or impuesto.tax_ids.name == 'ISC 18%'">
+                                            <t t-set="gravado18" t-value="gravado18 + impuesto.price_subtotal "/>
+                                        </t>
+                                        <t t-if="impuesto.tax_ids.name == 'EXE' or impuesto.tax_ids.name == 'EXEIMP' or impuesto.tax_ids.name == 'EXEXPORT' or impuesto.tax_ids.name == 'EXEC'">
+                                            <t t-set="exento" t-value="exento + (impuesto.price_unit * impuesto.quantity)"/>
+                                        </t>
+                                        <t t-if="impuesto.tax_ids.name == 'EXO' or impuesto.tax_ids.name == 'EXOC'">
+                                            <t t-set="exonerado" t-value="exonerado + (impuesto.price_unit * impuesto.quantity)"/>
+                                        </t>
+                                        <t t-set="descuento" t-value="descuento + ((impuesto.discount/100) * impuesto.price_unit)"/>
+                                        <t t-set="isv" t-value="impuesto.price_total - impuesto.price_subtotal"/>
+                                    </t>
+                                    <tr t-att-class="'bg-white' if row_index % 2 else 'bg-gray'">
+                                        <td>
+                                            <span t-if="line.product_id" t-field="line.product_id.name"/>
+                                            <span t-else="" t-field="line.name"/>
+                                        </td>
+                                        <td style="padding: 8px;text-align:end">
+                                            <span t-field="line.quantity"/>
+                                        </td>
+                                        <td style="  padding: 8px;text-align:end">
+                                            <span t-field="o.currency_id.symbol"/>
+                                            <span t-field="line.price_unit"/>
+                                        </td>
+                                        <td style="  padding: 8px;text-align:end">
+                                            <span t-field="line.price_total"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <div style="text-align:center;">
+                            <span>****ULTIMA LINEA****</span>
+                        </div>
+                        <div class="footer" style="border-top:5px solid #e3e4e5;margin-top:90px">
+                            <div class="row">
+                                <div class="col-7" style=" padding-left:30px;margin-top:15px;">
+                                    <div style="height:100px;overflow:hidden;margin-top:0px;border:3px solid #857B7B ;border-radius: 8px;">
+                                        <span style="font-weight:bold;">Comentarios</span>
+                                        <span t-field="o.narration"/>
+                                    </div>
+                                    <div t-if="o.move_type == 'out_invoice'" style="height:100px;overflow:hidden;margin-top:8px;border:3px solid #857B7B ;border-radius: 8px;">
+                                        <span style="font-weight:bold;">Condiciones y Terminos de Venta</span>
+                                        <br/>
+                                        <span style="paddign-top:11px;">1.No se aceptan cambios ni devoluciones en productos facturados y entregados</span>
+                                        <br/>
+                                        <span style="paddign-top:11px;">2.Toda factura vencida generara un recargo mensual de 5% del valor de la factura</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span style="text-align:start;margin-top:10px ;">
+                                            <span>Total en Letras: </span>
+                                            <b>
+                                                <span t-esc="o._l10n_hn_edi_cfdi_amount_to_text()"/>
+                                            </b>
+                                            <br/>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-5" style=" padding-left:10px;">
+                                    <table class="table table-sm o_main_table" style="border:1px solid white;">
+                                        <tr>
+                                            <td style="text-align:left;border: none">
+                                                <strong>Subtotal</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span t-esc="gravado + exento + exonerado" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left;border: none">
+                                                <strong>Importe Gravado 15%</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span class="text-right" t-esc="gravado" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left;border: none">
+                                                <strong>Importe Gravado 18%</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span class="text-right" t-esc="gravado18" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left;border: none">
+                                                <strong>Total Exento</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span t-esc="exento" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left;border: none">
+                                                <strong>Total Exonerado</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span t-esc="exonerado" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left;border: none">
+                                                <strong>ISV 15%</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span t-esc="isv15" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left;border: none">
+                                                <strong>ISV 18%</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span t-esc="isv18" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left" style="font-weight:bold;border: none">
+                                                <strong>Total</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span t-field="o.amount_total"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page" t-if="o.company_id.id == 2">
+                    <div class="header">
+                        <div class="row" style="border-bottom:5px solid #D9042B">
+                            <div class="col-4" style="display: flex; justify-content: center; align-items: center; padding-left:30px">
+                                <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height:60px;margin-top:10px" alt="Logo"/>
+                            </div>
+                            <div class="col-8">
+                                <span t-field="o.company_id" style="font-weight:bold;font-size:20px"/>
+                                <br/>
+                                <span>RTN:</span>
+                                <span t-field="o.company_id.vat"/>
+                                <br/>
+                                <span>Dirección:</span>
+                                <span t-field="o.company_id.street"/>
+                                <br/>
+                                <span>Email:</span>
+                                <span t-field="o.company_id.email"/>
+                                <span>|</span>
+                                <span>Tel:</span>
+                                <span t-field="o.company_id.phone"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12" style="margin-top:10px;font-weight:bold;">
+                            <h1>
+                                <span>BOLETA DE COMPRA No.</span>
+                                <span t-if="o.name != '/'" t-field="o.name"/>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:20px;">
+                        <div class="col-6" style="font-size:24px">
+                            <span>Proveedor:</span>
+                            <span t-field="o.partner_id"/>
+                            <br/>
+                            <span>RTN:</span>
+                            <span t-field="o.partner_id.vat"/>
+                            <br/>
+                            <span>Dirección:</span>
+                            <span t-field="o.company_id.street"/>
+                        </div>
+                        <div class="col-6" style="font-size:24px">
+                            <span>CAI:</span>
+                            <span t-field="o.l10n_hn_pr_edi_cai_id.name"/>
+                            <br/>
+                            <span>Rango Autorizado:</span>
+                            <span>Desde:</span>
+                            <t t-set="min_range_number" t-value="'%s%s' % (o.l10n_hn_pr_edi_cai_id.sequence_ids[0].prefix, str(o.l10n_hn_pr_edi_cai_id.sequence_ids[0].l10n_hn_min_range_number).zfill(o.l10n_hn_pr_edi_cai_id.sequence_ids[0].padding))"/>
+                            <t t-set="max_range_number" t-value="'%s%s' % (o.l10n_hn_pr_edi_cai_id.sequence_ids[0].prefix, str(o.l10n_hn_pr_edi_cai_id.sequence_ids[0].l10n_hn_max_range_number).zfill(o.l10n_hn_pr_edi_cai_id.sequence_ids[0].padding))"/>
+                            <span t-esc="min_range_number"/>
+                            <br/>
+                            <span>Hasta:</span>
+                            <span t-esc="max_range_number"/>
+                            <br/>
+                            <span>Fecha limite de emisión:</span>
+                            <span t-field="o.authorization_end_date"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table table-sm o_main_table" style="margin-top:10px;margin-bottom:0px;font-size:26px">
+                            <thead style="background-color:#CF443E ;border:1px solid #ecedee; color:white">
+                                <tr>
+                                    <th>Descripcion</th>
+                                    <th style=";text-align:end">Cantidad</th>
+                                    <th style=";text-align:end">Precio</th>
+                                    <th style=";text-align:end"> Total</th>
+                                </tr>
+                            </thead>
+                            <tbody class="invoice_tbody" style="border-top:1px solid white">
+                                <t t-set="pesototall" t-value="0"/>
+                                <t t-set="line_weight" t-value="0"/>
+                                <t t-set="conteo" t-value="0"/>
+                                <t t-set="isv" t-value="0"/>
+                                <t t-set="descuento" t-value="0.00"/>
+                                <t t-set="exento" t-value="0.00"/>
+                                <t t-set="exonerado" t-value="0.00"/>
+                                <t t-set="isv15" t-value="0.00"/>
+                                <t t-set="isv18" t-value="0.00"/>
+                                <t t-set="gravado_con_impuesto" t-value="0.00"/>
+                                <t t-set="gravado" t-value="0.00"/>
+                                <t t-set="gravado18" t-value="0.00"/>
+                                <t t-set="current_subtotal" t-value="0"/>
+                                <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
+                                <t t-set="row_index" t-value="0"/>
+                                <t t-foreach="lines" t-as="line">
+                                    <t t-set="row_index" t-value="row_index + 1"/>
+                                    <t t-set="line_weight" t-value="line.quantity * line.product_id.weight"/>
+                                    <t t-set="pesototall" t-value="pesototall + line_weight"/>
+                                    <t t-foreach="line" t-as="impuesto">
+                                        <t t-if="impuesto.tax_ids.name == 'ISV 15%' or impuesto.tax_ids.name == 'ISC 15%'">
+                                            <t t-set="isv15" t-value="isv15 + (impuesto.price_total - impuesto.price_subtotal)"/>
+                                        </t>
+                                        <t t-if="impuesto.tax_ids.name == 'ISV 18%' or impuesto.tax_ids.name == 'ISC 18%'">
+                                            <t t-set="isv18" t-value="isv18 +(impuesto.price_total - impuesto.price_subtotal)"/>
+                                        </t>
+                                        <t t-if="impuesto.tax_ids.name == 'ISV 15%' or impuesto.tax_ids.name == 'ISC 15%'">
+                                            <t t-set="gravado" t-value="gravado + impuesto.price_subtotal "/>
+                                        </t>
+                                        <t t-if="impuesto.tax_ids.name == 'ISV 18%' or impuesto.tax_ids.name == 'ISC 18%'">
+                                            <t t-set="gravado18" t-value="gravado18 + impuesto.price_subtotal "/>
+                                        </t>
+                                        <t t-if="impuesto.tax_ids.name == 'EXE' or impuesto.tax_ids.name == 'EXEIMP' or impuesto.tax_ids.name == 'EXEXPORT' or impuesto.tax_ids.name == 'EXEC'">
+                                            <t t-set="exento" t-value="exento + (impuesto.price_unit * impuesto.quantity)"/>
+                                        </t>
+                                        <t t-if="impuesto.tax_ids.name == 'EXO' or impuesto.tax_ids.name == 'EXOC'">
+                                            <t t-set="exonerado" t-value="exonerado + (impuesto.price_unit * impuesto.quantity)"/>
+                                        </t>
+                                        <t t-set="descuento" t-value="descuento + ((impuesto.discount/100) * impuesto.price_unit)"/>
+                                        <t t-set="isv" t-value="impuesto.price_total - impuesto.price_subtotal"/>
+                                    </t>
+                                    <tr t-att-class="'bg-white' if row_index % 2 else 'bg-gray'">
+                                        <td>
+                                            <span t-if="line.product_id" t-field="line.product_id.name"/>
+                                            <span t-else="" t-field="line.name"/>
+                                        </td>
+                                        <td style="text-align:end">
+                                            <span t-field="line.quantity"/>
+                                        </td>
+                                        <td style="text-align:end">
+                                            <span t-field="o.currency_id.symbol"/>
+                                            <span t-field="line.price_unit"/>
+                                        </td>
+                                        <td style="text-align:end">
+                                            <span t-field="line.price_total"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <div style="text-align:center;">
+                            <span>****ULTIMA LINEA****</span>
+                        </div>
+                        <div class="footer" style="border-top:5px solid #D9042B;margin-top:90px">
+                            <div class="row">
+                                <div class="col-7" style=" margin-top:15px;">
+                                    <div style="height:100px;overflow:hidden;margin-top:0px;border:3px solid #857B7B ;border-radius: 8px;">
+                                        <span style="font-weight:bold;">Comentarios</span>
+                                        <span t-field="o.narration"/>
+                                    </div>
+                                    <div t-if="o.move_type == 'out_invoice'" style="height:100px;overflow:hidden;margin-top:8px;border:3px solid #857B7B ;border-radius: 8px;">
+                                        <span style="font-weight:bold;">Condiciones y Terminos de Venta</span>
+                                        <br/>
+                                        <span style="paddign-top:11px;">1.No se aceptan cambios ni devoluciones en productos facturados y entregados</span>
+                                        <br/>
+                                        <span style="paddign-top:11px;">2.Toda factura vencida generara un recargo mensual de 5% del valor de la factura</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span style="text-align:start;margin-top:10px ;">
+                                            <span>Total en Letras: </span>
+                                            <b>
+                                                <span t-esc="o._l10n_hn_edi_cfdi_amount_to_text()"/>
+                                            </b>
+                                            <br/>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-5" style=" padding-left:10px;">
+                                    <table class="table table-sm o_main_table" style="border:1px solid white;">
+                                        <tr>
+                                            <td style="text-align:left;border: none">
+                                                <strong>Subtotal</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span t-esc="gravado + exento + exonerado" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left;border: none">
+                                                <strong>Importe Gravado 15%</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span class="text-right" t-esc="gravado" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left;border: none">
+                                                <strong>Importe Gravado 18%</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span class="text-right" t-esc="gravado18" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left;border: none">
+                                                <strong>Total Exento</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span t-esc="exento" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left;border: none">
+                                                <strong>Total Exonerado</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span t-esc="exonerado" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left;border: none">
+                                                <strong>ISV 15%</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span t-esc="isv15" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left;border: none">
+                                                <strong>ISV 18%</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span t-esc="isv18" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left" style="font-weight:bold;border: none">
+                                                <strong>Total</strong>
+                                            </td>
+                                            <td style="text-align:right;border: none">
+                                                <span t-field="o.amount_total"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+
+    </template>
+    <record id="action_document_invoice" model="ir.actions.report">
+        <field name="name">Boleta de compra</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_hn_edi_invoice.document_invoice</field>
+        <field name="report_file">l10n_hn_edi_invoice.document_invoice</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
