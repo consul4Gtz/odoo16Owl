@@ -41,7 +41,7 @@ class PosOrder(models.Model):
         res['l10n_latam_document_number'] = document_number
         res['l10n_hn_edi_from_pos'] = True
         res['l10n_hn_edi_sag'] = self.l10n_hn_edi_sag
-        res['l10n_hn_edi_diplomatic_number'] = self.l10n_hn_edi_diplomatic
+        res['l10n_hn_edi_diplomatic'] = self.l10n_hn_edi_diplomatic
         res['l10n_hn_edi_exempt_order'] = self.l10n_hn_edi_exempt_order
         res['l10n_hn_edi_exempt_certificate'] = self.l10n_hn_edi_exempt_certificate
         return res
