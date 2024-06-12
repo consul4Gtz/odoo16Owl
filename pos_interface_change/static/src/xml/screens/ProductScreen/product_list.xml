@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ProductListInherit" t-inherit="point_of_sale.ProductsWidget" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[@class='product-list-container']" position="replace">
+            <t t-if="show_product_list == true">
+                <div class="product-list-container">
+                    <div t-if="productsToDisplay.length != 0" class="product-list product_list">
+                       <table class="hoverTable tableFixHead">
+                            <thead>
+                                <tr style="font-size: 15px; text-align: center;">
+                                    <th class="text" t-attf-style="background:{{background}}">CODIGO</th>
+                                    <th class="text" t-attf-style="background:{{background}}">PRODUCTO</th>
+                                    <th class="text" t-attf-style="background:{{background}}">PRECIO</th>
+                                    <t t-if="env.pos.config.x_pos_display_stock">
+                                        <th class="text" t-attf-style="background:{{background}}">STOCK QTY</th>
+                                    </t>
+                                    <th class="text" t-attf-style="background:{{background}}">UNIDAD</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="productsToDisplay" t-as="product" t-key="product.id">
+                                    <ProductItem product="product" show_product_list="show_product_list"/>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div t-else="" class="product-list-empty no-results-message">
+                        <p t-if="searchWord">
+                            No product found for <b>"<t t-esc="searchWord"/>"</b> in this category.
+                        </p>
+                        <p t-else="">
+                            There are no products in this category.
+                        </p>
+                    </div>
+                    <div class="portal search-database-button no-results-message" t-att-class="{ oe_hidden:  !shouldShowButton }"></div>
+                </div>
+            </t>
+            <t t-if="show_product_list == false">
+                <div class="product-list-container">
+                    <div t-if="productsToDisplay.length != 0" class="product-list">
+                        <t t-foreach="productsToDisplay" t-as="product" t-key="product.id">
+                            <ProductItem product="product" show_product_list="show_product_list"/>
+                        </t>
+                    </div>
+                    <div t-else="" class="product-list-empty no-results-message">
+                        <p t-if="searchWord">
+                            No product found for <b>"<t t-esc="searchWord"/>"</b> in this category.
+                        </p>
+                        <p t-else="">
+                            There are no products in this category.
+                        </p>
+                    </div>
+                    <div class="portal search-database-button no-results-message" t-att-class="{ oe_hidden:  !shouldShowButton }"></div>
+                </div>
+            </t>
+            <t t-if="category_position == 'bottom'">
+                <ProductsWidgetControlPanel mobileSearchBarIsShown="props.mobileSearchBarIsShown" breadcrumbs="breadcrumbs"
+                                        subcategories="subcategories" hasNoCategories="hasNoCategories" />
+            </t>
+
+            <t t-if="category_position == 'right'">
+                    <ProductsWidgetControlPanel mobileSearchBarIsShown="props.mobileSearchBarIsShown" breadcrumbs="breadcrumbs"
+                                        subcategories="subcategories" hasNoCategories="hasNoCategories" class="right"/>
+            </t>
+        </xpath>
+
+        <xpath expr="//ProductsWidgetControlPanel" position="replace">
+            <t t-if="category_position == 'default'">
+                <ProductsWidgetControlPanel mobileSearchBarIsShown="props.mobileSearchBarIsShown" breadcrumbs="breadcrumbs"
+                                        subcategories="subcategories" hasNoCategories="hasNoCategories" />
+            </t>
+        </xpath>
+
+        <xpath expr="//div[@class='products-widget']" position="attributes">
+            <attribute name="t-att-class" add="(category_position == 'right' ? 'products-widget products-widget-categories-right ' : ' ') "/>
+        </xpath>
+    </t>
+
+    <t t-name="HideShowNumpad"
+       t-inherit="point_of_sale.ProductScreen"
+       t-inherit-mode="extension"
+       owl="1">
+        <xpath expr="//div[@class='pads']" position="before">
+            <t t-if="toggle_numpad == true">
+                <div t-attf-style="border-top: solid 2px {{background}};text-align: center; " style="border-top: solid 2px rgb(110,200,155);text-align: center; " t-on-click="toogleNumpad">
+                    <i class="numpad-toggle fa fa-caret-down fa-2x"
+                    t-attf-style="cursor: pointer; transform: scale(2,1); color: {{background}};">
+                    </i>
+                </div>
+            </t>
+        </xpath>
+    </t>
+
+</templates>

@@ -1,0 +1,176 @@
+<odoo>
+  <data>
+      <record id="pos_all_in_one_pos_config_from_inherit" model="ir.ui.view">
+          <field name="name">Pos all in one pos config from inherit</field>
+          <field name="model">pos.config</field>
+          <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+          <field name="arch" type="xml">
+              <xpath expr="//sheet" position="inside">
+                  <h2>Pantalla personalizada  </h2>
+                  <div class="row mt16 o_settings_container">
+                      <div id="show_product_list" class="col-12 col-lg-6 o_setting_box">
+                          <div class="o_setting_left_pane">
+                              <field name="x_display_product_list" />
+                          </div>
+                          <div class="o_setting_right_pane">
+                              <label for="x_display_product_list" />
+                              <div class="text-muted">
+                                Mostrar productos como una lista
+                              </div>
+                          </div>
+                      </div>
+                      <div id="x_display_order_list" class="col-12 col-lg-6 o_setting_box">
+                          <div class="o_setting_left_pane">
+                              <field name="x_display_order_list" />
+                          </div>
+                          <div class="o_setting_right_pane">
+                              <label for="x_display_order_list" />
+                              <div class="text-muted">
+                                Mostrar tabla de pedidos
+                              </div>
+                          </div>
+                      </div>
+                      <div id="x_background_color" class="col-12 col-lg-6 o_setting_box">
+                          <div class="o_setting_left_pane">
+
+                          </div>
+                          <div class="o_setting_right_pane">
+                              <label for="x_background_color" />
+                              <div class="text-muted">
+                                Color de fondo                            
+                              </div>
+                              <field name="x_background_color" />
+                          </div>
+                      </div>
+                      <div id="x_logo" class="col-12 col-lg-6 o_setting_box">
+                          <div class="o_setting_left_pane">
+
+                          </div>
+                          <div class="o_setting_right_pane">
+                              <label for="x_logo" />
+                              <div class="text-muted">
+                                Logotipo 
+                              </div>
+                              <field name="x_logo" widget='image'/>
+                          </div>
+                      </div>
+                      <div id="x_position_categories" class="col-12 col-lg-6 o_setting_box">
+                          <div class="o_setting_left_pane">
+
+                          </div>
+                          <div class="o_setting_right_pane">
+                              <label for="x_position_categories" />
+                              <div class="text-muted">
+                                Categorías Posición
+                              </div>
+                              <field name="x_position_categories"/>
+                          </div>
+                      </div>
+                      <div id="x_toggle_numpad" class="col-12 col-lg-6 o_setting_box">
+                          <div class="o_setting_left_pane">
+
+                          </div>
+                          <div class="o_setting_right_pane">
+                              <label for="x_toggle_numpad" />
+                              <div class="text-muted">
+                                Alternar teclado numérico
+                              </div>
+                              <field name="x_toggle_numpad"/>
+                          </div>
+                      </div>
+                      <div id="x_position_button" class="col-12 col-lg-6 o_setting_box">
+                          <div class="o_setting_left_pane">
+
+                          </div>
+                          <div class="o_setting_right_pane">
+                              <label for="x_position_button" />
+                              <div class="text-muted">
+                                Posición del botón
+                              </div>
+                              <field name="x_position_button"/>
+                          </div>
+                      </div>
+                  </div>
+
+
+                  <h2>Existencias en puntos de venta</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="x_pos_display_stock"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="x_pos_display_stock"/>
+                                <div class="text-muted">
+                                    Marque esto para mostrar el stock en la pantalla pos.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="x_pos_stock_type" string="Stock Type"/>
+                                <div class="text-muted">
+                                    El tipo de stock aparece en la pantalla POS.
+                                </div>
+                                <div class="content-group mt16">
+                                    <field name="x_pos_stock_type"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="x_pos_allow_order"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="x_pos_allow_order"/>
+                                <div class="text-muted">
+                                    Permitir pedido pos cuando el producto esté agotado.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="x_pos_deny_order" string="Deny pos order"/>
+                                <div class="text-muted">
+                                    Denegar pedido pos cuando la cantidad del producto baje a la cantidad ingresada.
+                                </div>
+                                <div class="content-group mt16">
+                                    <field name="x_pos_deny_order"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>Configuración de ubicación de existencias</h2>
+                    <div class="row mt16 o_settings_container">
+
+                        <div class="col-xs-12 col-md-6 o_setting_box" id="stock_location">
+                            <div class="o_setting_right_pane">
+                                <label for="x_show_stock_location"/>
+                                <div class="text-muted">
+                                    Tipo de ubicación del stock del producto
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="x_show_stock_location" class="o_light_label" widget="radio"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="x_stock_location_id"/>
+                                <div class="text-muted">
+                                    Ubicación de stock utilizada para el inventario
+                                </div>
+                                <div class="content-group mt16">
+                                    <field name="x_stock_location_id"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              </xpath>
+          </field>
+      </record>
+  </data>
+</odoo>
