@@ -1,0 +1,13 @@
+.pos .product .product-package {
+    position: absolute;
+    top: 67px;
+    left: 34px;
+    opacity: 0.8;
+    color: white;
+    line-height: 13px;
+    background: #405473;
+    padding: 2px 5px;
+    border-radius: 2px;
+    font-size: 14px;
+    padding: 4px
+}

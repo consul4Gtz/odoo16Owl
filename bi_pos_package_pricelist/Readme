@@ -1,0 +1,40 @@
+
+Version 16.0.0.0 : (14-10-22)
+		- Migrated in v16 JS, XML,.py code
+
+Version 16.0.0.1 : (10-02-23)
+	- Add condition for click product that time lot popup is not shown so add selection popup for a select lot or package popup.
+	- Update code when scan barcode that time shows lot popup and package popup.
+
+Version 16.0.0.2 : (11-07-23)
+-Solved issue while open pos session.
+
+Version 16.0.0.3 : (22-11-23)
+	- Fixed backend issue when we create product pricelist and select pack product that time min qty is not saved fixed issue.
+	- When clicking pack product it shows the wrong price it does not calculate the pack price to fix the issue.
+	
+Version 16.0.0.4 : (08-03-2024)
+	- Fixed issue related to traceback while restrict categories in configuration.
+
+Version 16.0.0.5 : (21-03-2024)
+	- Fixed issue related to barcode scan.
+
+
+Version 16.0.0.6 : (02-04-2024)
+	- Fixed issue package Price.
+
+Version 16.0.0.7 : (02-04-2024)
+	- Fixed issue related to Per pack show in popup 
+	- click on icon in orderline ,selected pack show.
+
+Version 16.0.0.8 : (03-04-2024)
+	- Fixed issue related to Package show as per selected pricelist
+
+
+Version 16.0.0.9 : (27-05-2024)
+	- add new barcode fields for product package and scan in pos. 
+
+Version 16.0.1.0 : (31-05-2024)
+	- add product directly while scan barcode.
+	- for pack line pack qty increase while update qty from numpad. 
+	

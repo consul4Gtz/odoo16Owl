@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="Product" t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('product-img')]" position="inside">
+        <!-- <t t-jquery=".product-img" t-operation="append"> -->
+            <t t-if="env.pos.pro.includes(props.product.id)">
+                <div class="product-bundle-pack"
+                     style="position: absolute; box-sizing: border-box; bottom: 0;top: 65px; line-height: 15px; width: 100%; height: 30px; overflow: hidden; text-overflow: ellipsis; background: #75bb98; color: #fff; padding: 3px; padding-top: 5px;">
+                Package Product
+                </div>
+            </t>
+            <!-- </t> -->
+        </xpath>
+    </t>
+    <t t-name="Packagepopup" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <Draggable>
+                <div class="popup" style="background: lightgray;">
+                    <header class="title drag-handle">
+                       Add Package Product
+                    </header>
+                    <main class="body">
+                       <div>
+                            <div class="popup_body">
+                                <div class="product-list" style="margin-left:50px">
+                                    <div class="product select_package" t-foreach="props.orderlines || []" t-as="item" t-key="item.id"
+                                             t-att-data-product-id="item.id" t-on-click="click_on_package_product"
+                                             t-att-id="item.id"
+                                             style="font-family: 'Lato-Reg';text-align: center;color: #875a7b;font-size: 12px; height:100px; ">
+                                            <t t-if="item.package">
+                                                <div class="price-tag Packageprice" style="position: absolute;top: 2px;right: 2px;vertical-align: top;color: white;line-height: 13px;background: #7f82ac;padding: 2px 5px;border-radius: 2px;">
+                                                    <t t-esc="env.pos.format_currency(item.package_price,'Product Price')+'/'+'Pack'"/>
+                                                </div>
+                                            </t>
+                                            <t t-else="">
+                                                <div class="price-tag Packageprice" style="position: absolute;top: 2px;right: 2px;vertical-align: top;color: white;line-height: 13px;background: #7f82ac;padding: 2px 5px;border-radius: 2px;">
+                                                    <t t-esc="env.pos.format_currency(item.package_price,'Product Price')+'/'+item.product_uom_id[1]"/>
+                                                </div>
+                                            </t>
+                                            <div class="name" style="margin-top: 30px;">
+                                                <t t-esc='item.display_name'/>
+                                            </div>
+                                            <div class="product-name">
+                                                <t t-if="item.qty">
+                                                    Quantity: <t t-esc="item.qty"/>
+                                                </t>
+                                            </div>
+                                            <t t-if="item.package">
+                                                <div class="product-package">
+                                                    <t t-esc="item.package"></t>
+                                                </div>
+                                            </t>
+                                        </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="PackVals">
+                            <div class="product_package_qty">
+                               Pack Quantity:<input id="qtyVals" type="text" value="1" style="width:15%"/>
+                            </div>
+
+                            <div class="product_total_price"
+                                 style="text-align:left visibility: visible;margin-left:-18px;margin-top:7px">Total Price: <span
+                                    id="packageValue"/></div>
+                        </div>
+                    </main>
+                    <footer class="footer">
+                        <div class="button cancel" t-on-mousedown.prevent="cancel">
+                            <t t-esc="props.cancelText"/>
+                        </div>
+                        <div class="button confirm" t-on-mousedown.prevent="click_confirm">
+                            <t t-esc="props.confirmText"/>
+                        </div>
+                    </footer>
+                </div>
+            </Draggable>
+        </div>
+    </t>
+
+    <t t-name="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+        <xpath expr="//ul[hasclass('info-list')]" position="inside">
+            <li class="package_info">
+                <t t-if="props.line.is_pack_line">
+                    <i t-on-click="props.line.show_product_package" class="oe_link_icon fa fa-info-circle oe_icon"
+                       role="img" aria-hidden="true"></i>
+                    <em><t t-esc="props.line.get_pack_quantity()" /></em>
+                    <em><t t-esc="props.line.is_pack_line" /></em>
+                    at
+                    <em><t t-esc="props.line.pack_price" />/
+                        <t t-esc="props.line.is_pack_line"/></em>
+                </t>    
+            </li>
+        </xpath>
+    </t>
+    <t t-name="OrderLinesReceipt" t-inherit="point_of_sale.OrderLinesReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[@t-esc='line.product_name_wrapped[0]']" position="after">
+            <t t-if="line.is_pack_line">
+                <t t-esc="line.receipt_quantity"/>
+                <span> </span>
+                <t t-esc="line.is_pack_line"/>
+            </t>
+        </xpath>
+    </t>
+</templates>
+    
+    
